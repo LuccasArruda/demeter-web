@@ -4,7 +4,7 @@ $light-bg: #edf8ef;
 .login-page {
   display: flex;
   height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Bai Jamjuree', sans-serif;
 
   .left-panel {
     width: 50%;
@@ -16,7 +16,7 @@ $light-bg: #edf8ef;
     padding: 2rem;
 
     .logo {
-      width: 80px;
+      width: 150px;
       margin-bottom: 1rem;
     }
 
@@ -68,6 +68,24 @@ $light-bg: #edf8ef;
       }
     }
 
+    .signup {
+      font-size: 0.9rem;
+      color: #333;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    
+      a {
+        color: $primary-color;
+        font-weight: bold;
+        margin-left: 0.25rem;
+        text-decoration: none;
+    
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
     button {
       background-color: $primary-color;
       color: white;
@@ -80,7 +98,7 @@ $light-bg: #edf8ef;
       transition: background-color 0.3s ease;
 
       &:hover {
-        
+        background-color: #154814;;
       }
     }
   }

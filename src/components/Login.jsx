@@ -30,6 +30,9 @@ const Login = () => {
         </div>
 
         <div className="forgot">Esqueci minha senha</div>
+        <div className="signup">
+          Não tem uma conta? <a href="/register">Criar conta</a>
+        </div>
 
         <button>Entrar</button>
       </div>
