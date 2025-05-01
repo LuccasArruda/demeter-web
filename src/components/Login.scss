@@ -13,6 +13,7 @@ $light-bg: #edf8ef;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
 
     .logo {
       width: 80px;
@@ -26,32 +27,30 @@ $light-bg: #edf8ef;
       margin-bottom: 2rem;
     }
 
-    input {
-      width: 300px;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background-color: $light-bg;
-      font-size: 1rem;
-    }
-
-    .password-wrapper {
+    .input-wrapper {
       position: relative;
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 1rem;
 
       input {
         width: 100%;
-        padding-right: 2.5rem;
+        padding: 0.75rem 2.5rem 0.75rem 0.75rem; // espaço à direita para o ícone
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: $light-bg;
+        font-size: 1rem;
+        color: #333;
       }
 
       .icon {
         position: absolute;
-        right: 10px;
+        right: 12px;
         top: 50%;
         transform: translateY(-50%);
+        font-size: 20px;
         cursor: pointer;
-        color: #666;
+        color: #555;
       }
     }
 
@@ -60,6 +59,9 @@ $light-bg: #edf8ef;
       font-size: 0.9rem;
       margin-bottom: 1.5rem;
       cursor: pointer;
+      align-self: center;
+      max-width: 300px;
+      text-align: center;
 
       &:hover {
         text-decoration: underline;
@@ -75,15 +77,18 @@ $light-bg: #edf8ef;
       font-size: 1rem;
       cursor: pointer;
       width: 300px;
+      transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: darken($primary-color, 10%);
+        
       }
     }
   }
 
   .right-side {
     flex: 1;
+
+    // fundo animado
     --s: 194px;
     --c1: #238724;
     --c2: #154814;
@@ -99,5 +104,19 @@ $light-bg: #edf8ef;
       conic-gradient(at 25% 25%, #0000 50%, var(--c2) 0 240deg, var(--c1) 0 300deg, var(--c2) 0),
       linear-gradient(-150deg, var(--_l)) var(--c3);
     background-size: calc(0.866 * var(--s)) var(--s);
+  }
+
+  // RESPONSIVO
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .right-side {
+      display: none;
+    }
+
+    .left-panel {
+      width: 100%;
+      padding: center;
+    }
   }
 }

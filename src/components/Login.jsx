@@ -1,25 +1,42 @@
+import React, { useState } from 'react';
 import './Login.scss';
-import logo from '../assets/logo.png'; // ajuste o caminho se necessário
+import logo from '../assets/logo.png';
 
-export default function Login() {
+const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="login-page">
-      <div className="left-panel">
-        <img src={logo} alt="Logo Deméter" className="logo" />
+      <div className="left-panel mb-position-absolute mb-top-50 mb-start-50 mb-translate-middle"> 
+          <img src={logo} alt="Logo" className="logo" />
         <h1 className="title">Deméter</h1>
 
-        <input type="email" placeholder="E-mail" />
-        
-        <div className="password-wrapper">
-          <input type="password" placeholder="Senha" />
-          <span className="material-icons icon">visibility</span>
+        <div className="input-wrapper">
+          <input type="email" placeholder="E-mail" />
         </div>
 
-        <span className="forgot">Esqueci minha senha</span>
+        <div className="input-wrapper">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Senha"
+          />
+          <span className="material-icons icon" onClick={togglePassword}>
+            {showPassword ? 'visibility_off' : 'visibility'}
+          </span>
+        </div>
+
+        <div className="forgot">Esqueci minha senha</div>
+
         <button>Entrar</button>
       </div>
 
       <div className="right-side"></div>
     </div>
   );
-}
+};
+
+export default Login;
