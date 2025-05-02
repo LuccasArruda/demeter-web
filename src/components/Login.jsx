@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import './Login.scss';
 import logo from '../assets/logo.png';
 
@@ -30,8 +31,8 @@ const Login = () => {
         </div>
 
         <div className="forgot">Esqueci minha senha</div>
-        <div className="signup">
-          Não tem uma conta? <a href="/register">Criar conta</a>
+        <div className="signup text-center mt-2">
+          Não tem uma conta? <Link to="/Cadastro">Criar conta</Link>
         </div>
 
         <button>Entrar</button>
