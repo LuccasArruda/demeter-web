@@ -64,6 +64,7 @@ export default function CadastroAmbiente() {
           {form.tipo === 'pessoal' && (
             <p className="aviso">
               <i className="bi bi-info-circle"></i> Ambientes do tipo <strong> Pessoal </strong> só podem ter uma rede elétrica!
+              
             </p>
           )}
         </div>
