@@ -62,22 +62,21 @@ export default function CadastroAmbiente() {
             </label>
           </div>
           {form.tipo === 'pessoal' && (
-            <p className="aviso">
-              <i className="bi bi-info-circle"></i> Ambientes do tipo <strong> Pessoal </strong> só podem ter uma rede elétrica!
-              
-            </p>
+            <div className='aviso'>
+              <i className='bi bi-info-circle'></i>
+              <p className='texto'>Ambientes do tipo <strong>Pessoal</strong> só podem ter uma rede elétrica</p>
+            </div>
           )}
         </div>
       </div>
 
-      <div className="upload">
+      <label className="upload">
         <img src={upload} alt="Upload" />
-        <label>
-          <span>Insira uma foto do Ambiente</span>
-          <p>Clique ou arraste uma foto</p>
-          <input type="file" accept="image/*" onChange={handleFileChange} hidden />
-        </label>
-      </div>
+        <span>Insira uma foto do Ambiente</span>
+        <p>Clique ou arraste uma foto</p>
+        <input type="file" accept="image/*" onChange={handleFileChange} hidden />
+      </label>
+
 
       <button type="submit">Cadastrar</button>
     </form>
