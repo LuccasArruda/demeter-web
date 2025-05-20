@@ -30,7 +30,7 @@ const Login = () => {
           </span>
         </div>
 
-        <div className="forgot">Esqueci minha senha</div>
+        <div className="forgot"><Link to="/RecuperarSenha">Esqueci minha senha</Link></div>
         <div className="signup text-center mt-2">
           Não tem uma conta? <Link to="/Cadastro">Criar conta</Link>
         </div>
