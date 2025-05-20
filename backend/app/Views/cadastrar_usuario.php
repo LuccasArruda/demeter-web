@@ -43,21 +43,35 @@
             </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
-
-        <?php if (session()->getFlashdata('success')) : ?>
-        <div class="alert alert-success mt-3">
-            <?= session()->getFlashdata('success') ?>
-        </div>
-        <?php endif; ?>
-        <?php if (session()->getFlashdata('error')) : ?>
-        <div class="alert alert-danger mt-3">
-            <?= session()->getFlashdata('error') ?>
-        </div>
-        <?php endif; ?>
         
     </div>
 
 
+    <!-- Popup de erro de cadastro de usuario -->
+    <?php if (session()->getFlashdata('error')) : ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var myModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                myModal.show();
+            });
+        </script>
+    <?php endif; ?>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content border-danger">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="errorModalLabel">Erro</h5>
+            </div>
+            <div class="modal-body text-danger">
+                <?= session()->getFlashdata('error') ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+            </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
