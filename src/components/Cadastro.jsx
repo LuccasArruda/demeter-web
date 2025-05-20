@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // IMPORTANTE
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Cadastro.scss";
 import logo from '../assets/logo.png';

@@ -26,9 +26,6 @@ export default function RecuperarSenha() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <span className="icon">
-              <i className="bi bi-envelope"></i>
-            </span>
           </div>
 
           <button type="submit">Enviar link</button>
