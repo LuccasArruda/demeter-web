@@ -19,21 +19,24 @@ class CadastrarUsuario extends Controller
         $telefone = $this->request->getPost('telefone');
         $senha = password_hash($this->request->getPost('senha'), PASSWORD_BCRYPT);
 
-        $db = Database::connect();
-        $builder = $db->table('usuario');
+        $conexao = Database::connect();
+        $tabela = $conexao->table('usuario');
 
-        $data = [
+        $dados = [
             'nome' => $nome,
             'email' => $email,
             'telefone' => $telefone,
             'senha' => $senha
         ];
 
-        if ($builder->insert($data)) {
+        $operacaoRealizada = $tabela->insert($dados);
+
+        if ($operacaoRealizada) {
             return redirect()->to('/login')->with('success', 'Usuário cadastrado com sucesso!');
         } else {
             return redirect()->back()->with('error', 'Erro ao cadastrar usuário.');
         }
+
     }
 }
 

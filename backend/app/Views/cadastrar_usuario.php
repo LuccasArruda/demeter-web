@@ -15,7 +15,7 @@
                 <h1>Cadastro de Usuairos</h1>
             </div>
         </div>  
-
+        <!-- Manter o action do formulário -->
         <form action="<?= base_url('cadastrar-usuario') ?>" method="post">
             <div class="row">
                 <div class="col-4 mb-3 mx-auto text-start">
@@ -47,7 +47,7 @@
     </div>
 
 
-    <!-- Popup de erro de cadastro de usuario -->
+    <!-- INICIO Popup de erro de cadastro de usuario -->
     <?php if (session()->getFlashdata('error')) : ?>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -72,6 +72,7 @@
             </div>
         </div>
     </div>
+    <!-- FINAL POPUP de erro de cadastro de usuario -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
