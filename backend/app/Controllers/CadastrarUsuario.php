@@ -34,7 +34,7 @@ class CadastrarUsuario extends Controller
             ],
             'telefone' => [
                 'required' => 'O telefone é obrigatório.',
-                'min_length' => 'O telefone deve ter pelo menos 8 dígitos.'
+                'regex_match' => 'Informe um telefone válido com DDD, como (11) 91234-5678.'
             ],
             'senha' => [
                 'required' => 'A senha é obrigatória.',
