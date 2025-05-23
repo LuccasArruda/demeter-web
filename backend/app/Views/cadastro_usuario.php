@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Criar Conta</title>
-  <link rel="stylesheet" href="<?= base_url('assets/css/cadastro.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/reset.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/variaveis.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/Cadastro.css') ?>">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-
-
 <div class="pagina-cadastro">
   <div class="painel-esquerdo">
     <img src="<?= base_url('assets/img/logo.png'); ?>" alt="Logo" class="logo">
@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <div class="painel-direito"></div>
+  <div class="d-sm-none d-md-block painel-direito"></div>
 </div>
 
 <script>
