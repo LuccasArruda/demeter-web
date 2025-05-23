@@ -6,8 +6,14 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->get('/home', 'Home::getIndex');
-$routes->get('/login', 'Login::getIndex');
+$routes->get('/', 'Home::Index');
+$routes->get('/home', 'Home::Index');
+
+$routes->get('/login', 'Login::Index');
+
 $routes->get('/teste-conexao', 'Teste::testarConexao');
+
 $routes->get('/cadastrar-usuario', 'CadastrarUsuario::index');
 $routes->post('/cadastrar-usuario', 'CadastrarUsuario::cadastrar');
+
+$routes->get('/cadastrar-ambiente', 'CadastrarAmbiente::index');
