@@ -39,7 +39,7 @@
 
     <div class="voltar-login">
       Já tem uma conta?
-      <a href="<?= base_url('/') ?>"> Entrar</a>
+      <a href="<?= base_url('/login') ?>"> Entrar</a>
     </div>
   </div>
 

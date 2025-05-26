@@ -1,66 +1,59 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <title>Login - Deméter</title>
+    <link rel="stylesheet" href="<?= base_url('assets/css/reset.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/variaveis.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/login.css') ?>"> 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* Caso necessário, você pode colocar estilos aqui temporariamente */
+  </style>
 </head>
-
 <body>
+  <div class="login-page">
+    <div class="left-panel mb-position-absolute mb-top-50 mb-start-50 mb-translate-middle"> 
+      <img src="<?= base_url('assets/img/logo.png') ?>"alt="Logo" class="logo">
+      <h1 class="title">Deméter</h1>
 
-    <h1>Login</h1>
-
-    <?php if (session()->getFlashdata('success') || session()->getFlashdata('error') || session()->getFlashdata('errors')): ?>
-        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header 
-                        <?= session()->getFlashdata('success') ? 'bg-success' : 'bg-danger' ?> 
-                        text-white">
-                        <h5 class="modal-title" id="feedbackModalLabel">
-                            <?= session()->getFlashdata('success') ? 'Sucesso' : 'Erro' ?>
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-                        <?php if (session()->getFlashdata('success')): ?>
-                            <?= esc(session()->getFlashdata('success')) ?>
-                        <?php elseif (session()->getFlashdata('error')): ?>
-                            <?= esc(session()->getFlashdata('error')) ?>
-                        <?php elseif (session()->getFlashdata('errors')): ?>
-                            <ul class="mb-0">
-                                <?php foreach (session()->getFlashdata('errors') as $erro): ?>
-                                    <li><?= esc($erro) ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php endif; ?>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn 
-                            <?= session()->getFlashdata('success') ? 'btn-success' : 'btn-danger' ?>" 
-                            data-bs-dismiss="modal">Fechar</button>
-                    </div>
-                </div>
-            </div>
+      <form method="post" action="autenticar.php"> <!-- Altere conforme sua lógica de login -->
+        <div class="input-wrapper">
+          <input type="email" name="email" placeholder="E-mail" required>
         </div>
-    <?php endif; ?>
 
+        <div class="input-wrapper">
+          <input type="password" name="senha" id="senha" placeholder="Senha" required>
+          <span class="material-icons icon" onclick="togglePassword()">visibility</span>
+        </div>
 
+        <div class="forgot">
+          <a href="/recuperarsenha">Esqueci minha senha</a>
+        </div>
 
+        <div class="signup text-center mt-2">
+          Não tem uma conta? <a href="/cadastrar-usuario">Criar conta</a>
+        </div>
 
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
 
+    <div class="right-side"></div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const senha = document.getElementById('senha');
+      const icon = document.querySelector('.icon');
+      if (senha.type === 'password') {
+        senha.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        senha.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+  </script>
 </body>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var modalEl = document.getElementById('feedbackModal');
-            if (modalEl) {
-                var modal = new bootstrap.Modal(modalEl);
-                modal.show();
-            }
-        });
-    </script>
-
 </html>
