@@ -47,34 +47,53 @@
     </div>
 
 
-    <!-- INICIO Popup de erro de cadastro de usuario -->
-    <?php if (session()->getFlashdata('error')) : ?>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var myModal = new bootstrap.Modal(document.getElementById('errorModal'));
-                myModal.show();
-            });
-        </script>
-    <?php endif; ?>
-
-    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content border-danger">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="errorModalLabel">Erro</h5>
-            </div>
-            <div class="modal-body text-danger">
-                <?= session()->getFlashdata('error') ?>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-            </div>
+    <?php if (session()->getFlashdata('success') || session()->getFlashdata('error') || session()->getFlashdata('errors')): ?>
+        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header 
+                        <?= session()->getFlashdata('success') ? 'bg-success' : 'bg-danger' ?> 
+                        text-white">
+                        <h5 class="modal-title" id="feedbackModalLabel">
+                            <?= session()->getFlashdata('success') ? 'Sucesso' : 'Erro' ?>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <?php if (session()->getFlashdata('success')): ?>
+                            <?= esc(session()->getFlashdata('success')) ?>
+                        <?php elseif (session()->getFlashdata('error')): ?>
+                            <?= esc(session()->getFlashdata('error')) ?>
+                        <?php elseif (session()->getFlashdata('errors')): ?>
+                            <ul class="mb-0">
+                                <?php foreach (session()->getFlashdata('errors') as $erro): ?>
+                                    <li><?= esc($erro) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn 
+                            <?= session()->getFlashdata('success') ? 'btn-success' : 'btn-danger' ?>" 
+                            data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
+
     <!-- FINAL POPUP de erro de cadastro de usuario -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var modalEl = document.getElementById('feedbackModal');
+            if (modalEl) {
+                var modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        });
+    </script>
 
 </html>

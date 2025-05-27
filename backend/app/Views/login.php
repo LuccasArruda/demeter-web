@@ -13,38 +13,54 @@
 
     <h1>Login</h1>
 
-
-
-    <!-- Popup para confirmar cadastro de usuario -->
-    <?php if (session()->getFlashdata('success')) : ?>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var myModal = new bootstrap.Modal(document.getElementById('successModal'));
-                myModal.show();
-            });
-        </script>
-    <?php endif; ?>
-
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Sucesso</h5>
-                </div>
-                <div class="modal-body">
-                    <?= session()->getFlashdata('success') ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+    <?php if (session()->getFlashdata('success') || session()->getFlashdata('error') || session()->getFlashdata('errors')): ?>
+        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header 
+                        <?= session()->getFlashdata('success') ? 'bg-success' : 'bg-danger' ?> 
+                        text-white">
+                        <h5 class="modal-title" id="feedbackModalLabel">
+                            <?= session()->getFlashdata('success') ? 'Sucesso' : 'Erro' ?>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <?php if (session()->getFlashdata('success')): ?>
+                            <?= esc(session()->getFlashdata('success')) ?>
+                        <?php elseif (session()->getFlashdata('error')): ?>
+                            <?= esc(session()->getFlashdata('error')) ?>
+                        <?php elseif (session()->getFlashdata('errors')): ?>
+                            <ul class="mb-0">
+                                <?php foreach (session()->getFlashdata('errors') as $erro): ?>
+                                    <li><?= esc($erro) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn 
+                            <?= session()->getFlashdata('success') ? 'btn-success' : 'btn-danger' ?>" 
+                            data-bs-dismiss="modal">Fechar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
 
 
 
 
 
 </body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var modalEl = document.getElementById('feedbackModal');
+            if (modalEl) {
+                var modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        });
+    </script>
 
 </html>
