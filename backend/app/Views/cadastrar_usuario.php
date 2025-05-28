@@ -1,99 +1,102 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <title>Criar Conta</title>
+  <link rel="stylesheet" href="<?= base_url('assets/css/reset.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/variaveis.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/Cadastro.css') ?>">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<?php var_dump(base_url('assets/css/variaveis.css'))?>
+<div class="pagina-cadastro">
+  <div class="painel-esquerdo">
+    <img src="<?= base_url('assets/img/logo.png'); ?>" alt="Logo" class="logo">
 
-<body>
-    <div class="container mt-5 align-content-center text-center">
-        <div class="row">
-            <div class="col-12">
-                <h1>Cadastro de Usuairos</h1>
-            </div>
-        </div>  
-        <!-- Manter o action do formulário -->
-        <form action="<?= base_url('cadastrar-usuario') ?>" method="post">
-            <div class="row">
-                <div class="col-4 mb-3 mx-auto text-start">
-                    <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-4 mb-3 mx-auto text-start">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-4 mb-3 mx-auto text-start">
-                    <label for="telefone" class="form-label">Telefone</label>
-                    <input type="text" class="form-control" id="telefone" name="telefone" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class=" col-4 mb-3 mx-auto text-start">
-                    <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha" required>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
-        
+    <div class="titulo">Criar Conta</div>
+
+    <form action="<?= base_url('cadastrar-usuario') ?>" method="post">
+      <div class="campo-input">
+        <input type="text" name="nome" placeholder="Nome" required>
+      </div>
+
+      <div class="campo-input">
+        <input type="email" name="email" placeholder="E-mail" required>
+      </div>
+
+      <div class="campo-input">
+        <input type="tel" name="telefone" placeholder="Telefone" pattern="[0-9]*" inputmode="numeric"
+          oninput="this.value = this.value.replace(/\D/g, '')">
+      </div>
+
+      <div class="campo-input senha-wrapper">
+        <input type="password" name="senha" id="senha" placeholder="Senha" required>
+        <span class="material-icons icone" onclick="alternarSenha()">visibility</span>
+      </div>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <div class="voltar-login">
+      Já tem uma conta?
+      <a href="<?= base_url('/login') ?>"> Entrar</a>
     </div>
+  </div>
 
+  <div class="d-sm-none d-md-block painel-direito"></div>
 
-    <?php if (session()->getFlashdata('success') || session()->getFlashdata('error') || session()->getFlashdata('errors')): ?>
-        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header 
+  <?php if (session()->getFlashdata('success') || session()->getFlashdata('error') || session()->getFlashdata('errors')): ?>
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header 
                         <?= session()->getFlashdata('success') ? 'bg-success' : 'bg-danger' ?> 
                         text-white">
-                        <h5 class="modal-title" id="feedbackModalLabel">
-                            <?= session()->getFlashdata('success') ? 'Sucesso' : 'Erro' ?>
-                        </h5>
-                    </div>
-                    <div class="modal-body">
-                        <?php if (session()->getFlashdata('success')): ?>
-                            <?= esc(session()->getFlashdata('success')) ?>
-                        <?php elseif (session()->getFlashdata('error')): ?>
-                            <?= esc(session()->getFlashdata('error')) ?>
-                        <?php elseif (session()->getFlashdata('errors')): ?>
-                            <ul class="mb-0">
-                                <?php foreach (session()->getFlashdata('errors') as $erro): ?>
-                                    <li><?= esc($erro) ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php endif; ?>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn 
-                            <?= session()->getFlashdata('success') ? 'btn-success' : 'btn-danger' ?>" 
-                            data-bs-dismiss="modal">Fechar</button>
-                    </div>
-                </div>
-            </div>
+            <h5 class="modal-title" id="feedbackModalLabel">
+              <?= session()->getFlashdata('success') ? 'Sucesso' : 'Erro' ?>
+            </h5>
+          </div>
+          <div class="modal-body">
+            <?php if (session()->getFlashdata('success')): ?>
+              <?= esc(session()->getFlashdata('success')) ?>
+            <?php elseif (session()->getFlashdata('error')): ?>
+              <?= esc(session()->getFlashdata('error')) ?>
+            <?php elseif (session()->getFlashdata('errors')): ?>
+              <ul class="mb-0">
+                <?php foreach (session()->getFlashdata('errors') as $erro): ?>
+                  <li><?= esc($erro) ?></li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn 
+                            <?= session()->getFlashdata('success') ? 'btn-success' : 'btn-danger' ?>"
+              data-bs-dismiss="modal">Fechar</button>
+          </div>
         </div>
-    <?php endif; ?>
+      </div>
+    </div>
+  <?php endif; ?>
 
-    <!-- FINAL POPUP de erro de cadastro de usuario -->
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+<script>
+  function alternarSenha() {
+    const senhaInput = document.getElementById('senha');
+    const icone = senhaInput.nextElementSibling;
+    if (senhaInput.type === 'password') {
+      senhaInput.type = 'text';
+      icone.innerText = 'visibility_off';
+    } else {
+      senhaInput.type = 'password';
+      icone.innerText = 'visibility';
+    }
+  }
+</script>
+
 </body>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var modalEl = document.getElementById('feedbackModal');
-            if (modalEl) {
-                var modal = new bootstrap.Modal(modalEl);
-                modal.show();
-            }
-        });
-    </script>
 
 </html>
