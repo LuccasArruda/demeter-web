@@ -1,24 +1,50 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# Ignore arquivos e pastas gerados automaticamente
+/vendor/
+writable/cache/*
+writable/logs/*
+writable/session/*
+writable/uploads/*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Manter as pastas mas ignorar seu conteúdo
+!writable/cache/index.html
+!writable/logs/index.html
+!writable/session/index.html
+!writable/uploads/index.html
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Arquivos de configuração locais
+.env
+.env.*
+.env.backup
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos do sistema
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
+
+# Composer
+composer.lock
+
+# PHPUnit
+phpunit.xml
+phpunit.xml.dist
+
+# Cache de Composer e outras dependências
+/vendor/
+composer.phar
+
+# Arquivos temporários
+*.log
+*.bak
+*.tmp
+*.swp
+
+# Node (caso use npm/yarn para assets)
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
