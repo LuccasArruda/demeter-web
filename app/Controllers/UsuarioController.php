@@ -5,11 +5,21 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use Config\Database;
 
-class CadastrarUsuario extends Controller
+class UsuarioController extends Controller
 {
-    public function index()
+    public function paginaCadastro()
     {
         return view('cadastrar_usuario');
+    }
+
+    public function paginaLogin(): string
+    {
+        return view('login');
+    }
+
+    public function paginaRecuperarSenha(): string
+    {
+        return view('recuperar_senha');
     }
 
     public function cadastrar()

@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-class Ambiente extends BaseController
+class AmbienteController extends BaseController
 {
-    public function index()
+    public function paginaCadastro()
     {
-        return view('cadastro_ambiente');
+        return view('cadastrar_ambiente');
     }
 
-    public function salvar()
+    public function cadastrar()
     {
         $foto = $this->request->getFile('foto');
         $data = [
@@ -27,8 +27,6 @@ class Ambiente extends BaseController
             $foto->move(WRITEPATH . 'uploads', $newName);
             $data['foto'] = $newName;
         }
-
-        // Aqui você pode salvar $data no banco de dados
 
         return redirect()->to('/')->with('success', 'Ambiente cadastrado com sucesso!');
     }
