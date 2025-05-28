@@ -6,10 +6,11 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->get('/', 'Home::Index');
-$routes->get('/home', 'Home::Index');
+$routes->get('/', 'Home::index');
+$routes->get('/home', 'Home::index');
 
-$routes->get('/login', 'Login::Index');
+$routes->get('/login', 'Login::index');
+$routes->get('/login/recuperar-senha', 'Login::recuperarSenha');
 
 $routes->get('/teste-conexao', 'Teste::testarConexao');
 
