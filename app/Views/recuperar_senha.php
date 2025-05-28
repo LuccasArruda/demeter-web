@@ -23,7 +23,7 @@
       </form>
 
       <div class="forgot">
-        <a href="login.php">Voltar ao login</a>
+        <a href="/login">Voltar ao login</a>
       </div>
     </div>
 

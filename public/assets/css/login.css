@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@200;300;400;500;600;700&display=swap');
+
+body {
+  font-family: var(--fonte-principal);
+}
+
+.login-page {
+  display: flex;
+  height: 100vh;
+  font-family: var(--fonte-principal);
+}
+
+.login-page .left-panel {
+  width: 50%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-page .left-panel .logo {
+  width: 150px;
+  margin-bottom: 1rem;
+}
+
+.login-page .left-panel .title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--cor-primaria);
+  margin-bottom: 2rem;
+}
+
+.login-page .left-panel .input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 1rem;
+}
+
+.login-page .left-panel .input-wrapper input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: var(--fundo-claro);
+  font-size: 1rem;
+  color: #333;
+}
+
+.login-page .left-panel .input-wrapper .icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.login-page .left-panel .forgot,
+.login-page .left-panel .signup {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.login-page .left-panel .forgot a,
+.login-page .left-panel .signup a {
+  color: var(--cor-primaria);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-page .left-panel .forgot a:hover,
+.login-page .left-panel .signup a:hover {
+  text-decoration: underline;
+}
+
+.login-page .left-panel button {
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 300px;
+  transition: background-color 0.3s ease;
+}
+
+.login-page .left-panel button:hover {
+  background-color: var(--verde-escuro);
+}
+
+.login-page .right-side {
+  flex: 1;
+  --s: 194px;
+  --c1: var(--cor-primaria);
+  --c2: var(--verde-escuro);
+  --c3: #20661e;
+  --_l: #0000 calc(25%/3), var(--c1) 0 25%, #0000 0;
+  --_g: conic-gradient(from 120deg at 50% 87.5%, var(--c1) 120deg, #0000 0);
+  background: var(--_g), var(--_g) 0 calc(var(--s) / 2),
+              conic-gradient(from 180deg at 75%, var(--c2) 60deg, transparent 0),
+              conic-gradient(from 60deg at 75% 75%, var(--c1) 0 60deg, transparent 0),
+              linear-gradient(150deg, var(--_l)) 0 calc(var(--s) / 2),
+              conic-gradient(at 25% 25%, transparent 50%, var(--c2) 0 240deg, var(--c1) 0 300deg, var(--c2) 0),
+              linear-gradient(-150deg, var(--_l)) var(--c3);
+  background-size: calc(0.866 * var(--s)) var(--s);
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    padding: 1rem;
+  }
+
+  .right-side {
+    display: none !important;
+  }
+
+  .login-page .left-panel {
+    width: 100%;
+    padding: 2rem 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-page .left-panel .input-wrapper,
+  .login-page .left-panel button {
+    width: 100%;
+  }
+}
