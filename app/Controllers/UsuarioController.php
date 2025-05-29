@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Usuario;
 use CodeIgniter\Controller;
 use Config\Database;
+use App\Models\UsuarioModel;
 
 class UsuarioController extends Controller
 {
@@ -62,9 +64,6 @@ class UsuarioController extends Controller
         $telefone = $this->request->getPost('telefone');
         $senha = password_hash($this->request->getPost('senha'), PASSWORD_BCRYPT);
 
-        $conexao = Database::connect();
-        $tabela = $conexao->table('usuario');
-
         $dados = [
             'nome' => $nome,
             'email' => $email,
@@ -72,7 +71,8 @@ class UsuarioController extends Controller
             'senha' => $senha
         ];
 
-        $operacaoRealizada = $tabela->insert($dados);
+        $usuarioModel = new UsuarioModel();
+        $operacaoRealizada = $usuarioModel->cadastrarUsuario($dados);
 
         if ($operacaoRealizada) {
             return redirect()->to('/login')->with('success', 'Usuário cadastrado com sucesso!');
@@ -87,7 +87,8 @@ class UsuarioController extends Controller
         $email = $this->request->getPost('email');
         $senha = $this->request->getPost('senha');
 
-        $usuario = $this->buscaUsuarioPorEmail($email);
+        $usuarioModel = new UsuarioModel();
+        $usuario = $usuarioModel->buscaUsuarioPorEmail($email);
 
         // var_dump($usuario); 
         // die;
@@ -101,25 +102,6 @@ class UsuarioController extends Controller
         }
     }
 
-    public function buscaUsuarioPorEmail($email)
-    {
-        $conexao = Database::connect();
-        $tabela = $conexao->table('usuario');
-
-        $usuario = $tabela->where('EMAIL', $email)->get()->getRowArray();
-
-        return $usuario;
-    }
-    
-    public function buscaUsuarioPorID($id)
-    {
-        $conexao = Database::connect();
-        $tabela = $conexao->table('usuario');
-
-        $usuario = $tabela->where('ID', $id)->get()->getRowArray();
-
-        return $usuario;
-    }
 
 }
 

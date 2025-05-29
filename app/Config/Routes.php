@@ -13,7 +13,7 @@ $routes->get('/cadastrar-usuario', 'UsuarioController::paginaCadastro');
 $routes->post('/cadastrar-usuario', 'UsuarioController::cadastrar');
 
 $routes->get('/cadastrar-ambiente', 'AmbienteController::paginaCadastro');
-$routes->get('/ambientes', 'AmbienteController::visualizar');
+$routes->get('/ambientes', 'AmbienteController::meusAmbientes');
 
 $routes->get('/cadastrar-rede-eletrica', 'RedeEletricaController::paginaCadastro');
 $routes->get('/redes-eletricas', 'RedeEletricaController::visualizar');
