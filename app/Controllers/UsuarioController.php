@@ -58,17 +58,19 @@ class UsuarioController extends Controller
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-
-        $nome = $this->request->getPost('nome');
-        $email = $this->request->getPost('email');
-        $telefone = $this->request->getPost('telefone');
-        $senha = password_hash($this->request->getPost('senha'), PASSWORD_BCRYPT);
-
+        $usuario = new Usuario(
+            0,
+            $this->request->getPost('nome'),
+            $this->request->getPost('email'),
+            $this->request->getPost('telefone'),
+            password_hash($this->request->getPost('senha'), PASSWORD_BCRYPT),
+            []
+        );
         $dados = [
-            'nome' => $nome,
-            'email' => $email,
-            'telefone' => $telefone,
-            'senha' => $senha
+            'NOME' => $usuario->getNome(),
+            'EMAIL' => $usuario->getEmail(),
+            'TELEFONE' => $usuario->getTelefone(),
+            'SENHA' => $usuario->getSenha()
         ];
 
         $usuarioModel = new UsuarioModel();
@@ -84,19 +86,23 @@ class UsuarioController extends Controller
 
     public function autenticar()
     {
-        $email = $this->request->getPost('email');
-        $senha = $this->request->getPost('senha');
+
+        $usuario = new Usuario(
+            0,
+            '',
+            $this->request->getPost('email'),
+            '',
+            $this->request->getPost('senha'),
+            []
+        );
 
         $usuarioModel = new UsuarioModel();
-        $usuario = $usuarioModel->buscaUsuarioPorEmail($email);
+        $usuarioRetorno = $usuarioModel->buscaUsuarioPorEmail($usuario->getEmail());
 
-        // var_dump($usuario); 
-        // die;
-
-        if ($usuario && password_verify($senha, $usuario['SENHA'])) {
-            session()->set('usuario_id', $usuario['ID']);
-            session()->set('usuario_nome', $usuario['NOME']);
-            return redirect()->to('/dashboard');
+        if ($usuario && password_verify($usuario->getSenha(), $usuarioRetorno['SENHA'])) {
+            session()->set('usuarioId', $usuarioRetorno['ID']);
+            session()->set('usuarioNome', $usuarioRetorno['NOME']);
+            return redirect()->to('/ambientes');
         } else {
             return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
         }
