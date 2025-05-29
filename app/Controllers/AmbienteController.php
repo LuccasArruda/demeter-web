@@ -30,4 +30,9 @@ class AmbienteController extends BaseController
 
         return redirect()->to('/')->with('success', 'Ambiente cadastrado com sucesso!');
     }
+
+    public function visualizar(): string
+    {
+        return view('ambientes');
+    }
 }
