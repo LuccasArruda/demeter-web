@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/login', 'UsuarioController::paginaLogin');
 $routes->get('/login/recuperar-senha', 'UsuarioController::paginaRecuperarSenha');
+$routes->post('/autenticar-usuario', 'UsuarioController::autenticar');
 $routes->get('/cadastrar-usuario', 'UsuarioController::paginaCadastro');
 $routes->post('/cadastrar-usuario', 'UsuarioController::cadastrar');
 

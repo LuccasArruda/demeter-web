@@ -16,7 +16,8 @@
       <img src="<?= base_url('assets/img/logo.png'); ?>" alt="Logo" class="logo">
       <h1 class="title">Deméter</h1>
 
-      <form method="post" action="autenticar.php"> 
+      <form method="post" action="<?= base_url('autenticar-usuario') ?>"> 
+        <?= csrf_field() ?>
         <div class="input-wrapper">
           <input type="email" name="email" placeholder="E-mail" required>
         </div>

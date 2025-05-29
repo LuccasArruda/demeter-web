@@ -81,6 +81,46 @@ class UsuarioController extends Controller
         }
 
     }
+
+    public function autenticar()
+    {
+        $email = $this->request->getPost('email');
+        $senha = $this->request->getPost('senha');
+
+        $usuario = $this->buscaUsuarioPorEmail($email);
+
+        // var_dump($usuario); 
+        // die;
+
+        if ($usuario && password_verify($senha, $usuario['SENHA'])) {
+            session()->set('usuario_id', $usuario['ID']);
+            session()->set('usuario_nome', $usuario['NOME']);
+            return redirect()->to('/dashboard');
+        } else {
+            return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
+        }
+    }
+
+    public function buscaUsuarioPorEmail($email)
+    {
+        $conexao = Database::connect();
+        $tabela = $conexao->table('usuario');
+
+        $usuario = $tabela->where('EMAIL', $email)->get()->getRowArray();
+
+        return $usuario;
+    }
+    
+    public function buscaUsuarioPorID($id)
+    {
+        $conexao = Database::connect();
+        $tabela = $conexao->table('usuario');
+
+        $usuario = $tabela->where('ID', $id)->get()->getRowArray();
+
+        return $usuario;
+    }
+
 }
 
 ?>

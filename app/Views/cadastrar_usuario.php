@@ -38,15 +38,7 @@
       <button type="submit">Cadastrar</button>
     </form>
 
-    <div class="voltar-login">
-      Já tem uma conta?
-      <a href="<?= base_url('/login') ?>"> Entrar</a>
-    </div>
-  </div>
-
-  <div class="d-sm-none d-md-block painel-direito"></div>
-
-  <?php if (session()->getFlashdata('success') || session()->getFlashdata('error') || session()->getFlashdata('errors')): ?>
+     <?php if (session()->getFlashdata('success') || session()->getFlashdata('error') || session()->getFlashdata('errors')): ?>
     <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -80,7 +72,26 @@
     </div>
   <?php endif; ?>
 
+    <div class="voltar-login">
+      Já tem uma conta?
+      <a href="<?= base_url('/login') ?>"> Entrar</a>
+    </div>
+  </div>
+
+  <div class="d-sm-none d-md-block painel-direito"></div>
+
+
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var modalEl = document.getElementById('feedbackModal');
+        if (modalEl) {
+            var modal = new bootstrap.Modal(modalEl);
+            modal.show();
+        }
+    });
+</script>
 
 <script>
   function alternarSenha() {
