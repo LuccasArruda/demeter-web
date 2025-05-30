@@ -1,0 +1,34 @@
+@import 'variaveis.css';
+
+.bg-cor-primaria{
+    background-color: var(--cor-primaria);
+}
+
+.text-verde-primaria{
+    color: var(--cor-primaria);
+}
+
+.navbar-site {
+    width: 70px;
+    height: 100%;
+}
+
+.navbar-site ul li span:hover{
+    background-color: var(--verde-intermediario);
+    cursor: pointer;
+    transform: scale(1.15);
+    transition-duration: 250ms;
+}
+
+.logo-navbar {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    padding: 5px;
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}

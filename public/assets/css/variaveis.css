@@ -1,5 +1,6 @@
 :root {
   --cor-primaria: #238724;
+  --verde-intermediario: #157316;
   --verde-escuro: #154814;
   --fundo-claro: #edf8ef;
   --fonte-principal: "Bai Jamjuree", sans-serif;
@@ -7,4 +8,5 @@
   --cor-hover-upload: #f0f9f1;
   --cor-texto-claro: #666;
   --cor-titulo: #333;
+  --branco-verde: #F3F3F3;
 }
