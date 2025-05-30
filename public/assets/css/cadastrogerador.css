@@ -1,0 +1,302 @@
+.cadastro-ambiente {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Bai Jamjuree', sans-serif;
+  background-color: var(--fundo-formulario);
+}
+
+.cadastro-ambiente .retornar {
+  display: inline-block;
+  color: var(--cor-primaria);
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Painel geral */
+.cadastro-ambiente .painel {
+  display: flex;
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Imagem ilustrativa */
+.cadastro-ambiente .ilustracao {
+  flex: 0 0 35%;
+  margin-bottom: 2rem;
+}
+
+.cadastro-ambiente .ilustracao img {
+  height: 100%;
+  width: 100%;
+}
+
+/* Formulário */
+.cadastro-ambiente form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cadastro-ambiente form h1 {
+  color: var(--cor-primaria);
+  text-align: center;
+}
+
+.cadastro-ambiente form .linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cadastro-ambiente form .linha input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.75rem;
+  border: 1px solid var(--cor-borda-input);
+  border-radius: 10px;
+  background-color: var(--fundo-claro);
+  font-size: 1rem;
+}
+
+/* Radio buttons */
+.cadastro-ambiente form .radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cadastro-ambiente form .radio-group label {
+  font-size: 0.95rem;
+  color: var(--cor-titulo);
+  display: flex;
+  align-items: center;
+}
+
+.cadastro-ambiente form .radio-group input[type="radio"] {
+  margin-right: 0.2rem;
+  accent-color: var(--cor-primaria);
+}
+
+/* Aviso */
+.cadastro-ambiente form .aviso {
+  font-size: 0.85rem;
+  color: var(--cor-primaria);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.cadastro-ambiente .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--cor-primaria);
+  margin-top: 0.5rem;
+}
+
+.cadastro-ambiente .checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--cor-primaria);
+  border-radius: 4px;
+}
+
+
+
+
+/* Upload */
+.cadastro-ambiente form .upload {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px dashed var(--cor-primaria);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.cadastro-ambiente form .upload:hover {
+  background-color: var(--cor-hover-upload);
+}
+
+.cadastro-ambiente form .upload img {
+  max-width: 150px;
+  margin-bottom: 1rem;
+}
+
+.cadastro-ambiente form .upload span {
+  color: var(--cor-primaria);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.cadastro-ambiente form .upload p {
+  font-size: 0.9rem;
+  color: var(--cor-texto-claro);
+}
+
+.cadastro-ambiente form .upload input {
+  display: none;
+}
+
+/* Botão */
+.cadastro-ambiente form button {
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.cadastro-ambiente form button:hover {
+  background-color: #154814;
+}
+
+h1 {
+  font-size: 1.8rem;
+  color: #2e7d32;
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.linha {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.linha input,
+.linha select {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #f2f9f4;
+  font-size: 1rem;
+}
+
+.cadastro-gerador .linha {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.cadastro-gerador input[type="text"],
+.cadastro-gerador input[type="number"],
+.cadastro-gerador select {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    background-color: #eef6f0;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.cadastro-gerador h1 {
+    font-size: 1.8rem;
+    color: var(--verde-principal);
+    margin-bottom: 0.5rem;
+}
+
+.cadastro-gerador .subtitulo {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .cadastro-ambiente {
+    padding: 1rem;
+  }
+
+  .cadastro-ambiente .painel {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .cadastro-ambiente .ilustracao {
+    display: block;
+    width: 100%;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .cadastro-ambiente form {
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+  .cadastro-ambiente form h1 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .cadastro-ambiente form .linha {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cadastro-ambiente form .linha input {
+    width: 100%;
+  }
+
+  .cadastro-ambiente form .upload img {
+    max-width: 100px;
+  }
+
+  .cadastro-ambiente form .upload span {
+    font-size: 1rem;
+  }
+
+  .cadastro-ambiente form .upload p {
+    font-size: 0.8rem;
+  }
+
+  .cadastro-ambiente form button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+}

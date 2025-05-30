@@ -1,3 +1,16 @@
+<?php
+
+$ambientes = [
+    ['id' => 1, 'nome' => 'Sala de Estar'],
+    ['id' => 2, 'nome' => 'Cozinha'],
+    ['id' => 3, 'nome' => 'Quarto Principal'],
+    ['id' => 4, 'nome' => 'Quarto de Crianças'],
+    ['id' => 5, 'nome' => 'Banheiro'],
+    // Adicione mais ambientes conforme necessário
+];
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,7 +19,7 @@
     <title>Cadastrar Rede Elétrica</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/reset.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/variaveis.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/cadastroambiente.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/cadastrorede.css') ?>">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
@@ -22,43 +35,27 @@
                 <!-- Painel de Ilustração -->
                 <div class="col d-none d-sm-none d-md-block">
                     <div class="ilustracao">
-                        <img src="<?= base_url('assets/img/ilustracao-ambiente.svg') ?>" alt="Ilustração Ambiente" class="" />
+                        <img src="<?= base_url('assets/img/redes.svg') ?>" alt="Ilustração Ambiente"
+                            class="" />
                     </div>
                 </div>
                 <!-- Formulário -->
-                <?= csrf_field() ?>
                 <div class="formulario col-12 col-md-6">
                     <h1>Cadastrar Nova Rede Elétrica</h1>
-                    <div class="linha">
-                        <input type="text" name="nome" placeholder="Nome do ambiente" required>
-                    </div>
+                    <p class="subtitulo">Dê um nome para a nova rede elétrica a ser cadastrada!</p>
 
                     <div class="linha">
-                        <input type="text" name="cep" placeholder="CEP" required>
-                        <input type="text" name="cidade" placeholder="Cidade" required>
-                        <input type="text" name="estado" placeholder="Estado" required>
-                    </div>
+                        <input type="text" name="nome" placeholder="Nome" required>
 
-                    <div class="linha">
-                        <input type="text" name="rua" placeholder="Rua" required>
-                        <input type="text" name="bairro" placeholder="Bairro" required>
+                        
+                        <select name="ambiente" required>
+                            <option value="">Ambiente</option>
+                            <?php foreach ($ambientes as $ambiente): ?>
+                                <option value="<?= $ambiente['id'] ?>"><?= $ambiente['nome'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        
                     </div>
-
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" name="tipo" value="pessoal" id="tipoPessoal" required>
-                            Pessoal
-                        </label>
-                        <label>
-                            <input type="radio" name="tipo" value="profissional" id="tipoProfissional" required>
-                            Profissional
-                        </label>
-                    </div>
-
-                    <div class="aviso d-none" id="aviso-pessoal">
-                        <p class="texto">Ambientes do tipo <strong>Pessoal</strong> só podem ter uma rede elétrica.</p>
-                    </div>
-
                 </div>
                 <label class="upload">
                     <img src="<?= base_url('assets/img/upload.svg') ?>" alt="Upload" />
@@ -69,16 +66,16 @@
 
                 <button type="submit">Cadastrar</button>
             </div>
-    </div>
-    </form>
 
-    <script>
-        document.querySelectorAll('input[name="tipo"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                document.getElementById('aviso-pessoal').classList.toggle('d-none', this.value !== 'pessoal');
+        </form>
+
+        <script>
+            document.querySelectorAll('input[name="tipo"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    document.getElementById('aviso-pessoal').classList.toggle('d-none', this.value !== 'pessoal');
+                });
             });
-        });
-    </script>
+        </script>
 
 </body>
 

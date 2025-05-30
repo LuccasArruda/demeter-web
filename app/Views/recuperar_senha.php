@@ -11,7 +11,7 @@
 <body>
   <div class="login-page">
     <div class="left-panel">
-      <img src="assets/img/logo.png" alt="Logo" class="logo">
+      <img src="<?= base_url('assets/img/logo.png'); ?>" alt="Logo" class="logo">
       <h2 class="title">Recuperar Senha</h2>
 
       <form method="post" action="" onsubmit="return enviarEmail()">
