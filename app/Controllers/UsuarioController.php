@@ -58,19 +58,16 @@ class UsuarioController extends Controller
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $usuario = new Usuario(
-            0,
-            $this->request->getPost('nome'),
-            $this->request->getPost('email'),
-            $this->request->getPost('telefone'),
-            password_hash($this->request->getPost('senha'), PASSWORD_BCRYPT),
-            []
-        );
+        $nome = $this->request->getPost('nome');
+        $email = $this->request->getPost('email');
+        $telefone = $this->request->getPost('telefone');
+        $senha = password_hash($this->request->getPost('senha'), PASSWORD_BCRYPT);
+
         $dados = [
-            'NOME' => $usuario->getNome(),
-            'EMAIL' => $usuario->getEmail(),
-            'TELEFONE' => $usuario->getTelefone(),
-            'SENHA' => $usuario->getSenha()
+            'NOME' => $nome,
+            'EMAIL' => $email,
+            'TELEFONE' => $telefone,
+            'SENHA' => $senha
         ];
 
         $usuarioModel = new UsuarioModel();
@@ -87,21 +84,15 @@ class UsuarioController extends Controller
     public function autenticar()
     {
 
-        $usuario = new Usuario(
-            0,
-            '',
-            $this->request->getPost('email'),
-            '',
-            $this->request->getPost('senha'),
-            []
-        );
+        $email = $this->request->getPost('email');
+        $senha = $this->request->getPost('senha');
 
         $usuarioModel = new UsuarioModel();
-        $usuarioRetorno = $usuarioModel->buscaUsuarioPorEmail($usuario->getEmail());
+        $usuario = $usuarioModel->buscaUsuarioPorEmail($email);
 
-        if ($usuario && password_verify($usuario->getSenha(), $usuarioRetorno['SENHA'])) {
-            session()->set('usuarioId', $usuarioRetorno['ID']);
-            session()->set('usuarioNome', $usuarioRetorno['NOME']);
+        if ($usuario && password_verify($senha, $usuario['SENHA'])) {
+            session()->set('usuarioId', $usuario['ID']);
+            session()->set('usuarioNome', $usuario['NOME']);
             return redirect()->to('/ambientes');
         } else {
             return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
