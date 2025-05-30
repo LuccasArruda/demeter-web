@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\AmbienteModel;
 
 class AmbienteController extends BaseController
 {
@@ -31,8 +32,28 @@ class AmbienteController extends BaseController
         return redirect()->to('/')->with('success', 'Ambiente cadastrado com sucesso!');
     }
 
-    public function visualizar(): string
+    public function meusAmbientes() 
     {
-        return view('ambientes');
+        $sessao = session();
+        $usuarioId = $sessao->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'Acesso negado. Faça login para continuar.');
+        }
+
+        $ambienteModel = new AmbienteModel();
+
+        $ambientes = $ambienteModel->getAmbientesPorUsuario($usuarioId);
+
+        $dados = [
+            'ambientes' => $ambientes,
+            'titulo' => 'Meus Ambientes'
+        ];
+
+        if (empty($ambientes)) {
+            $dados['mensagem_status'] = 'Você ainda não possui ambientes cadastrados.';
+        }
+
+        return view('ambientes', $dados); 
     }
 }

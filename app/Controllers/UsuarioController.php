@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Usuario;
 use CodeIgniter\Controller;
 use Config\Database;
+use App\Models\UsuarioModel;
 
 class UsuarioController extends Controller
 {
@@ -56,23 +58,20 @@ class UsuarioController extends Controller
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-
         $nome = $this->request->getPost('nome');
         $email = $this->request->getPost('email');
         $telefone = $this->request->getPost('telefone');
         $senha = password_hash($this->request->getPost('senha'), PASSWORD_BCRYPT);
 
-        $conexao = Database::connect();
-        $tabela = $conexao->table('usuario');
-
         $dados = [
-            'nome' => $nome,
-            'email' => $email,
-            'telefone' => $telefone,
-            'senha' => $senha
+            'NOME' => $nome,
+            'EMAIL' => $email,
+            'TELEFONE' => $telefone,
+            'SENHA' => $senha
         ];
 
-        $operacaoRealizada = $tabela->insert($dados);
+        $usuarioModel = new UsuarioModel();
+        $operacaoRealizada = $usuarioModel->cadastrarUsuario($dados);
 
         if ($operacaoRealizada) {
             return redirect()->to('/login')->with('success', 'Usuário cadastrado com sucesso!');
@@ -81,6 +80,26 @@ class UsuarioController extends Controller
         }
 
     }
+
+    public function autenticar()
+    {
+
+        $email = $this->request->getPost('email');
+        $senha = $this->request->getPost('senha');
+
+        $usuarioModel = new UsuarioModel();
+        $usuario = $usuarioModel->buscaUsuarioPorEmail($email);
+
+        if ($usuario && password_verify($senha, $usuario['SENHA'])) {
+            session()->set('usuarioId', $usuario['ID']);
+            session()->set('usuarioNome', $usuario['NOME']);
+            return redirect()->to('/ambientes');
+        } else {
+            return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
+        }
+    }
+
+
 }
 
 ?>
