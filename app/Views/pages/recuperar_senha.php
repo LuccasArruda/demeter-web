@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Recuperar Senha</title>
-  <link rel="stylesheet" href="<?= base_url('assets/css/reset.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/css/variaveis.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/css/recuperarsenha.css') ?>"> 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<?= $this->include('layouts/header') ?>
+
 </head>
+
 <body>
   <div class="login-page">
     <div class="left-panel">
@@ -37,5 +31,4 @@
       return false; // evita recarregar a página
     }
   </script>
-</body>
-</html>
+<?= $this->include('layouts/footer') ?>

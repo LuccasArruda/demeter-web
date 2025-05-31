@@ -10,4 +10,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/login.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/navbar.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/ambientes.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/cadastro-usuario.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/recuperar-senha.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/cadastro-ambiente.css') ?>">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="assets/img/logo-sem-padding.png" type="img/png">

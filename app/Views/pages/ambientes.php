@@ -1,8 +1,5 @@
 <?= $this->include('layouts/header') ?>
 
-<style>
-</style>
-
 </head>
 
 <body>

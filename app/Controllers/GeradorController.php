@@ -6,6 +6,6 @@ class GeradorController extends BaseController
 {
     public function paginaCadastroGerador(): string
     {
-        return view('cadastrar_gerador');
+        return view('pages/cadastrar_gerador');
     }
 }

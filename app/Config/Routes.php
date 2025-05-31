@@ -20,7 +20,6 @@ $routes->get('/cadastrar-rede-eletrica', 'RedeEletricaController::paginaCadastro
 $routes->get('/redes-eletricas/(:num)', 'RedeEletricaController::visualizar/$1');
 $routes->post('/cadastrar-rede-eletrica', 'RedeEletricaController::cadastrar');
 
-
 $routes->get('/cadastrar-aparelho', 'AparelhoController::paginaCadastroAparelho');
 $routes->post('/cadastrar-aparelho', 'AparelhoController::cadastrarAparelho');
 
@@ -28,7 +27,6 @@ $routes->get('/cadastrar-gerador', 'GeradorController::paginaCadastroGerador');
 $routes->post('/cadastrar-gerador', 'GeradorController::cadastrarGerador');
 
 $routes->get('/aparelhos', 'AparelhoController::visualizar');
-
 
 $routes->get('/teste-conexao', 'Teste::testarConexao');
 

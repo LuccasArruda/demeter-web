@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<?= $this->include('layouts/header') ?>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Login - Deméter</title>
-  <link rel="stylesheet" href="<?= base_url('assets/css/reset.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/css/variaveis.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/css/login.css') ?>">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -16,7 +8,7 @@
       <img src="<?= base_url('assets/img/logo.png'); ?>" alt="Logo" class="logo">
       <h1 class="title">Deméter</h1>
 
-      <form method="post" action="<?= base_url('autenticar-usuario') ?>"> 
+      <form method="post" action="<?= base_url('autenticar-usuario') ?>">
         <?= csrf_field() ?>
         <div class="input-wrapper">
           <input type="email" name="email" placeholder="E-mail" required>
@@ -39,7 +31,7 @@
       </form>
     </div>
 
-    <div class="right-side d-none"></div>
+    <div class="right-side"></div>
   </div>
 
   <script>
@@ -55,6 +47,5 @@
       }
     }
   </script>
-</body>
 
-</html>
+<?= $this->include('layouts/footer') ?>

@@ -11,17 +11,17 @@ class UsuarioController extends Controller
 {
     public function paginaCadastro()
     {
-        return view('cadastrar_usuario');
+        return view('/pages/cadastrar_usuario');
     }
 
     public function paginaLogin(): string
     {
-        return view('login');
+        return view('/pages/login');
     }
 
     public function paginaRecuperarSenha(): string
     {
-        return view('recuperar_senha');
+        return view('/pages/recuperar_senha');
     }
 
     public function cadastrar()
@@ -93,7 +93,7 @@ class UsuarioController extends Controller
         if ($usuario && password_verify($senha, $usuario['SENHA'])) {
             session()->set('usuarioId', $usuario['ID']);
             session()->set('usuarioNome', $usuario['NOME']);
-            return redirect()->to('/ambientes');
+            return redirect()->to('/pages/ambientes');
         } else {
             return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
         }

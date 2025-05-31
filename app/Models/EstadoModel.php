@@ -6,5 +6,9 @@
         protected $table = 'ESTADO';
         protected $primaryKey = 'ID';
         protected $allowedFields = ['NOME', 'SIGLA'];
+
+        public function getEstados(){
+            return $this->findAll();
+        }
     }
 ?>

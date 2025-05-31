@@ -57,7 +57,8 @@
   margin-bottom: 1rem;
 }
 
-.cadastro-ambiente form .linha input {
+.cadastro-ambiente form .linha input,
+.cadastro-ambiente form .linha select {
   flex: 1;
   min-width: 200px;
   padding: 0.75rem;

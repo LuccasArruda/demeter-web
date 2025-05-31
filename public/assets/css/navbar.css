@@ -13,11 +13,14 @@
     height: 100%;
 }
 
+.navbar-site ul li span{
+    transition-duration: 250ms;
+}
+
 .navbar-site ul li span:hover{
     background-color: var(--verde-intermediario);
     cursor: pointer;
     transform: scale(1.15);
-    transition-duration: 250ms;
 }
 
 .logo-navbar {

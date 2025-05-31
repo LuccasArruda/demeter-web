@@ -8,7 +8,7 @@ class RedeEletricaController extends BaseController
 {
     public function paginaCadastro(): string
     {
-        return view('cadastrar_rede_eletrica');
+        return view('/pages/cadastrar_rede_eletrica');
     }
     
     public function visualizar($id)

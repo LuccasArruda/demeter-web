@@ -2,12 +2,21 @@
 
 namespace App\Controllers;
 use App\Models\AmbienteModel;
+use App\Models\EstadoModel;
 
 class AmbienteController extends BaseController
 {
     public function paginaCadastro()
     {
-        return view('cadastrar_ambiente');
+        $estadoModel = new EstadoModel();
+        $estados = $estadoModel->getEstados();
+
+        $dados = [ 
+            'estados' => $estados,
+            'tituloTela' => 'Deméter - Cadastrar Ambiente'
+        ];
+
+        return view('pages/cadastrar_ambiente', $dados);
     }
 
     public function cadastrar()
@@ -16,7 +25,7 @@ class AmbienteController extends BaseController
         $usuarioId = $session->get('usuarioId');
 
         if (!$usuarioId) {
-            return redirect()->to('/login')->with('error', 'É necessário estar logado.');
+            return redirect()->to('/pages/login')->with('error', 'É necessário estar logado.');
         }
 
         // Receber dados do formulário
@@ -84,7 +93,7 @@ class AmbienteController extends BaseController
             'FOTO' => $nomeFoto
         ]);
 
-        return redirect()->to('/ambientes')->with('success', 'Ambiente cadastrado com sucesso!');
+        return redirect()->to('/pages/ambientes')->with('success', 'Ambiente cadastrado com sucesso!');
     }
 
     public function meusAmbientes() 
@@ -93,7 +102,7 @@ class AmbienteController extends BaseController
         $usuarioId = $sessao->get('usuarioId');
 
         if (!$usuarioId) {
-            return redirect()->to('/login')->with('error', 'Acesso negado. Faça login para continuar.');
+            return redirect()->to('/pages/login')->with('error', 'Acesso negado. Faça login para continuar.');
         }
 
         $ambienteModel = new AmbienteModel();

@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<?= $this->include('layouts/header') ?>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Cadastrar Ambiente</title>
-  <link rel="stylesheet" href="<?= base_url('assets/css/reset.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/css/variaveis.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/css/cadastroambiente.css') ?>">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <body>
@@ -18,25 +9,32 @@
     <a href="<?= site_url('/') ?>" class="retornar">← Retornar</a>
 
     <form action="<?= site_url('ambiente/salvar') ?>" method="post" enctype="multipart/form-data">
-    <div class="row">
-      <!-- Painel de Ilustração -->
-      <div class="col d-none d-sm-none d-md-block">
-        <div class="ilustracao">
-          <img src="<?= base_url('assets/img/ilustracao-ambiente.svg') ?>" alt="Ilustração Ambiente" class="" />
+      <div class="row">
+        <!-- Painel de Ilustração -->
+        <div class="col d-none d-sm-none d-md-block">
+          <div class="ilustracao">
+            <img src="<?= base_url('assets/img/ilustracao-ambiente.svg') ?>" alt="Ilustração Ambiente" class="" />
+          </div>
         </div>
-      </div>
-      <!-- Formulário -->
+        <!-- Formulário -->
         <?= csrf_field() ?>
         <div class="formulario col-12 col-md-6">
           <h1>Cadastrar Novo Ambiente</h1>
           <div class="linha">
             <input type="text" name="nome" placeholder="Nome do ambiente" required>
+            <input type="number" name="valorMedioContaLuz" placeholder="Vl. Médio Conta de Luz" required>
           </div>
 
           <div class="linha">
             <input type="text" name="cep" placeholder="CEP" required>
             <input type="text" name="cidade" placeholder="Cidade" required>
-            <input type="text" name="estado" placeholder="Estado" required>
+            <select name="estado">
+              <option value="">Estado</option>
+              <?php foreach ($estados as $estado): ?>
+                <option value="<?= esc($estado['ID']) ?>"><?= esc($estado['SIGLA']) ?></option>
+              <?php endforeach; ?>
+            </select>
+            <input type="number" name="numero" placeholder="Número" required>
           </div>
 
           <div class="linha">
@@ -69,17 +67,15 @@
 
         <button type="submit">Cadastrar</button>
       </div>
-    </div>
+  </div>
   </form>
 
   <script>
     document.querySelectorAll('input[name="tipo"]').forEach(radio => {
-      radio.addEventListener('change', function () {
+      radio.addEventListener('change', function() {
         document.getElementById('aviso-pessoal').classList.toggle('d-none', this.value !== 'pessoal');
       });
     });
   </script>
 
-</body>
-
-</html>
+  <?= $this->include('layouts/footer') ?>
