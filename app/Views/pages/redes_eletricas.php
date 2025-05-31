@@ -10,12 +10,12 @@
 
     <main class="container mx-5">
         <div class="carrossel-cards d-flex overflow-x-scroll position-absolute translate-middle-y ms-5">
-            <?php if (!empty($ambientes)): ?>
-                <?php foreach ($ambientes as $ambiente): ?>
+            <?php if (!empty($redes)): ?>
+                <?php foreach ($redes as $rede): ?>
                     <div class="card ms-5 bg-card" style="width: 23rem;">
                         <img src="<?= base_url("assets/img/teste/ambiente1.png") ?>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="text-verde-primaria text-center"><?= esc($ambiente['DESCRICAO']) ?></h5>
+                            <h5 class="text-verde-primaria text-center"><?= esc($rede['ID']) ?></h5>
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex">
                                     <span class="material-icons mb-3 rounded text-verde-primaria">electric_bolt</span>
@@ -45,14 +45,14 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center w-100 py-2">
-                                <a href="/redes-eletricas/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-cor-primaria text-light d-block">Visualizar</a>
+                                <a href="/aparelhos/<?= esc($rede['ID']) ?>" class="text-decoration-none btn-card bg-cor-primaria text-light d-block">Visualizar</a>
                                 <a href="" class="text-decoration-none btn-card bg-perigo-outline d-block">Excluir</a>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             <?php elseif (!isset($mensagem_status)): // Se $ambientes estiver vazio e não houver mensagem_status ?>
-                <p>Nenhum ambiente encontrado para este usuário.</p>
+                <p>Nenhuma Rede encontrada para esse ambeinte.</p>
             <?php endif; ?>
  
         </div>

@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\RedeEletricaModel;
+
 class RedeEletricaController extends BaseController
 {
     public function paginaCadastro(): string
@@ -9,8 +11,18 @@ class RedeEletricaController extends BaseController
         return view('cadastrar_rede_eletrica');
     }
     
-    public function visualizar(): string
+    public function visualizar($id)
     {
-        return view('redes_eletricas');
+        $sessao = session();
+        $usuarioId = $sessao->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'Acesso negado. Faça login para continuar.');
+        }
+
+        $redeEletricaModel = new RedeEletricaModel();
+        $redes = $redeEletricaModel->getRedesPorAmbienteEUsuario($id, $usuarioId);
+
+        return view('/pages/redes_eletricas', ['redes' => $redes]);
     }
 }
