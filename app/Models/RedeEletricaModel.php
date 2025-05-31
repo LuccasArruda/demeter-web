@@ -15,12 +15,12 @@ class RedeEletricaModel extends Model
 
 
     public function getRedesPorAmbienteEUsuario($idAmbiente, $usuarioId)
-{
-    return $this->select('REDE_ELETRICA.*')
-        ->join('AMBIENTE', 'AMBIENTE.ID = REDE_ELETRICA.ID_AMBIENTE')
-        ->where('REDE_ELETRICA.ID_AMBIENTE', $idAmbiente)
-        ->where('AMBIENTE.ID_USUARIO', $usuarioId)
-        ->findAll();
-}
+    {
+        return $this->select('REDE_ELETRICA.*')
+            ->join('AMBIENTE', 'AMBIENTE.ID = REDE_ELETRICA.ID_AMBIENTE')
+            ->where('REDE_ELETRICA.ID_AMBIENTE', $idAmbiente)
+            ->where('AMBIENTE.ID_USUARIO', $usuarioId)
+            ->findAll();
+    }
 
 }

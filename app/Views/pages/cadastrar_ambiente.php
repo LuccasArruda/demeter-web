@@ -2,11 +2,11 @@
 
 </head>
 
-<body>
+<body class="bg-body-secondary">
 
-  <div class="cadastro-ambiente">
+  <div class="cadastro-ambiente bg-light my-5 rounded-5">
 
-    <a href="<?= site_url('/') ?>" class="retornar">← Retornar</a>
+    <a href="<?= site_url('ambientes') ?>" class="retornar">← Retornar</a>
 
     <form action="<?= site_url('ambiente/salvar') ?>" method="post" enctype="multipart/form-data">
       <div class="row">

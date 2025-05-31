@@ -2,9 +2,9 @@
 
 </head>
 
-<body>
+<body class="bg-body-secondary">
 
-    <div class="cadastro-ambiente">
+    <div class="cadastro-ambiente bg-light my-5 rounded-5">
 
         <a href="<?= site_url('/') ?>" class="retornar">← Retornar</a>
 
@@ -13,47 +13,44 @@
                 <!-- Painel de Ilustração -->
                 <div class="col d-none d-sm-none d-md-block">
                     <div class="ilustracao">
-                        <img src="<?= base_url('assets/img/ilustracao-ambiente.svg') ?>" alt="Ilustração Ambiente" class="" />
+                        <img src="<?= base_url('assets/img/ilustracao-aparelhos.svg') ?>" alt="Ilustração Ambiente" class="" />
                     </div>
                 </div>
                 <!-- Formulário -->
                 <?= csrf_field() ?>
                 <div class="formulario col-12 col-md-6">
                     <h1>Cadastrar Novo Aparelho</h1>
-                    <div class="linha">
-                        <input type="text" name="nome" placeholder="Nome do ambiente" required>
-                    </div>
-
-                    <div class="linha">
-                        <input type="text" name="cep" placeholder="CEP" required>
-                        <input type="text" name="cidade" placeholder="Cidade" required>
-                        <input type="text" name="estado" placeholder="Estado" required>
-                    </div>
-
-                    <div class="linha">
-                        <input type="text" name="rua" placeholder="Rua" required>
-                        <input type="text" name="bairro" placeholder="Bairro" required>
-                    </div>
-
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" name="tipo" value="pessoal" id="tipoPessoal" required>
-                            Pessoal
-                        </label>
-                        <label>
-                            <input type="radio" name="tipo" value="profissional" id="tipoProfissional" required>
-                            Profissional
-                        </label>
-                    </div>
-
-                    <div class="aviso d-none" id="aviso-pessoal">
-                        <p class="texto">Ambientes do tipo <strong>Pessoal</strong> só podem ter uma rede elétrica.</p>
+                    <div class="my-5">
+                        <div class="linha">
+                            <input type="text" name="nome" placeholder="Nome do aparelho" required>
+                            <input type="number" name="consumo" placeholder="Consumo (KWh)" required>
+                            <input type="number" name="tempoUsoMedio" placeholder="Tempo de Uso Médio (Horas)" required>
+                        </div>
+    
+                        <div class="linha">
+                            <select name="ENCE">
+                                <option value="">Classificação ENCE</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                                <option value="G">G</option>
+                            </select>
+                            <select name="redeEletrica">
+                                <option value="">Rede Elétrica</option>
+                                <?php foreach($redesEletricas as $redeEletrica): ?>
+                                    <option value="<?= esc($redeEletrica['ID']) ?>"><?= esc($redeEletrica['DESCRICAO'])?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
 
                 </div>
                 <label class="upload">
                     <img src="<?= base_url('assets/img/upload.svg') ?>" alt="Upload" />
-                    <span>Insira uma foto do ambiente</span>
+                    <span>Insira uma foto do aparelho</span>
                     <p class="text-muted">Clique ou arraste uma imagem</p>
                     <input type="file" name="foto" accept="image/*">
                 </label>
@@ -71,4 +68,4 @@
         });
     </script>
 
-<?= $this->include('layouts/footer') ?>
+    <?= $this->include('layouts/footer') ?>
