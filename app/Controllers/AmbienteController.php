@@ -54,6 +54,6 @@ class AmbienteController extends BaseController
             $dados['mensagem_status'] = 'Você ainda não possui ambientes cadastrados.';
         }
 
-        return view('ambientes', $dados); 
+        return view('pages/ambientes', $dados); 
     }
 }
