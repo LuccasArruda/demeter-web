@@ -29,9 +29,23 @@ class AmbienteModel extends Model
         return $this->update($id, $dados);
     }
 
-    public function deletarAmbiente($id)
+    public function deletarAmbiente($id, $userId)
     {
+        // Verifica se o ambiente pertence ao usuário
+        $ambiente = $this->where(['ID' => $id, 'ID_USUARIO' => $userId])->first();
+        if (!$ambiente) {
+            return false; // Ambiente não encontrado ou não pertence ao usuário
+        }
+
+        // Verifica se o ambiente possui redes elétricas associadas
+        $redeEletricaModel = new \App\Models\RedeEletricaModel();
+        $redesEletricas = $redeEletricaModel->where('ID_AMBIENTE', $id)->findAll();
+        if (!empty($redesEletricas)) {
+            return false; 
+        }
+
         return $this->delete($id);
+
     }
 
     public function getAmbientePorID($id)

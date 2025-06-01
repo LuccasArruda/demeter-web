@@ -16,10 +16,10 @@
                                 <p class="d-block">Um painel solar economizaria 30R$</p>
                             </div>
                             <div class="container-tipo-card d-flex align-items-center justify-content-end">
-                                <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center" title="Visualizar Aparelhos" style="display: block;">
+                                <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center <?php $texto = (esc($ambiente['TIPO']) == "PR") ? "d-none" : "d-block"; echo $texto; ?>" title="Visualizar Aparelhos" style="display: block;">
                                     <span class="material-icons rounded text-light">home</span>
                                 </div>
-                                <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center" title="Visualizar Aparelhos" style="display: block;">
+                                <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center <?php $texto = (esc($ambiente['TIPO']) == "PE") ? "d-none" : "d-block"; echo $texto; ?>" title="Visualizar Aparelhos" style="display: block;">
                                     <span class="material-icons rounded text-light">store</span>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                 <a href="" class="text-decoration-none btn-card bg-alterar-outline d-block">
                                     <span class="material-icons rounded">edit</span>
                                 </a>
-                                <a href="" class="text-decoration-none btn-card bg-perigo-outline d-block">
+                                <a href="/ambiente/excluir/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-perigo-outline d-block">
                                     <span class="material-icons rounded">delete</span>
                                 </a>
                             </div>

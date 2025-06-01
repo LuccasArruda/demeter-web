@@ -15,6 +15,7 @@ $routes->post('/cadastrar-usuario', 'UsuarioController::cadastrar');
 
 $routes->get('/cadastrar-ambiente', 'AmbienteController::paginaCadastro');
 $routes->get('/ambientes', 'AmbienteController::meusAmbientes');
+$routes->get('/ambiente/excluir/(:num)', 'AmbienteController::excluir/$1');
 $routes->post('/ambiente/salvar', 'AmbienteController::cadastrar');
 
 $routes->get('/cadastrar-rede-eletrica', 'RedeEletricaController::paginaCadastro');

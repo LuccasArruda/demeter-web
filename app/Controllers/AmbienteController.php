@@ -80,7 +80,7 @@ class AmbienteController extends BaseController
         // AMBIENTE
         $ambienteModel->insert([
             'DESCRICAO' => $descricao,
-            'TIPO' => strtoupper($tipo[0]), // transforma 'pessoal' em 'P', etc
+            'TIPO' => strtoupper($tipo[0]) . strtoupper($tipo[1]), // transforma 'pessoal' em 'P', etc
             'VL_MEDIO_CONTA_LUZ' => $valorContaLuz,
             'PERCENTUAL_SUSTENTABILIDADE' => 0,
             'ID_USUARIO' => $usuarioId,
@@ -116,5 +116,29 @@ class AmbienteController extends BaseController
         }
 
         return view('pages/ambientes', $dados); 
+    }
+
+    public function excluir($id) 
+    {
+
+        $sessao = session();
+        $usuarioId = $sessao->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'Acesso negado. Faça login para continuar.');
+        }
+
+        $ambienteModel = new AmbienteModel();
+        $ambiente = $ambienteModel->getAmbientePorID($id);
+
+        if (!$ambiente) {
+            return redirect()->to('/ambientes')->with('error', 'Ambiente não encontrado.');
+        }
+
+        if (!$ambienteModel->deletarAmbiente($id, $usuarioId)) {
+            return redirect()->to('/ambientes')->with('error', 'Não é possível excluir o ambiente. Verifique se ele possui redes elétricas associadas.');
+        }
+
+        return redirect()->to('/ambientes')->with('success', 'Ambiente excluído com sucesso!');
     }
 }
