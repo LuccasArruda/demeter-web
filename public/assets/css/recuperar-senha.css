@@ -1,80 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@200;300;400;500;600;700&display=swap');
-
 body {
   font-family: var(--fonte-principal);
+  margin: 0;
+  padding: 0;
+  background-color: var(--fundo-claro);
 }
 
 .login-page {
   display: flex;
-  height: 100vh;
-  font-family: var(--fonte-principal);
+  min-height: 100vh;
+  flex-direction: row;
 }
 
-.login-page .left-panel {
-  width: 50%;
-  background-color: white;
+.left-panel {
+  background-color: #fff;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 2rem;
+  align-items: center;
+  flex: 1;
 }
 
-.login-page .left-panel .logo {
+.logo {
   width: 150px;
   margin-bottom: 1rem;
 }
 
-.login-page .left-panel .title {
+.title {
   font-size: 2rem;
   font-weight: bold;
   color: var(--cor-primaria);
   margin-bottom: 2rem;
-  text-align: center;
 }
 
-.login-page .left-panel form {
+form {
   width: 100%;
   max-width: 300px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 1rem;
 }
 
-.login-page .left-panel .input-wrapper {
-  position: relative;
+.input-wrapper input {
   width: 100%;
-  margin-bottom: 1rem;
-}
-
-.login-page .left-panel .input-wrapper input {
-  width: 100%;
-  padding: 0.75rem 0.75rem;
-  border: 1px solid #ccc;
+  padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+  border: 1px solid var(--cor-biorda-input);
   border-radius: 8px;
   background-color: var(--fundo-claro);
   font-size: 1rem;
-  color: #333;
+  color: var(--cor-titulo);
 }
 
-.login-page .left-panel .forgot {
-  font-size: 0.9rem;
-  color: #333;
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.login-page .left-panel .forgot a {
-  color: var(--cor-primaria);
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.login-page .left-panel .forgot a:hover {
-  text-decoration: underline;
-}
-
-.login-page .left-panel button {
+button[type="submit"] {
   background-color: var(--cor-primaria);
   color: white;
   border: none;
@@ -82,16 +59,30 @@ body {
   border-radius: 9999px;
   font-size: 1rem;
   cursor: pointer;
-  width: 100%;
-  max-width: 300px;
   transition: background-color 0.3s ease;
 }
 
-.login-page .left-panel button:hover {
+button[type="submit"]:hover {
   background-color: var(--verde-escuro);
 }
 
-.login-page .right-side {
+.forgot {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.forgot a {
+  color: var(--cor-primaria);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.forgot a:hover {
+  text-decoration: underline;
+}
+
+.right-side {
   flex: 1;
   --s: 194px;
   --c1: var(--cor-primaria);
@@ -108,28 +99,27 @@ body {
   background-size: calc(0.866 * var(--s)) var(--s);
 }
 
+/* Responsivo */
 @media (max-width: 768px) {
   .login-page {
     flex-direction: column;
-    height: auto;
-    min-height: 100vh;
-    padding: 1rem;
   }
 
   .right-side {
     display: none !important;
   }
 
-  .login-page .left-panel {
+  .left-panel {
     width: 100%;
     padding: 2rem 1rem;
-    align-items: center;
-    justify-content: center;
   }
 
-  .login-page .left-panel .input-wrapper,
-  .login-page .left-panel button {
-    width: 100%;
+  form {
     max-width: 100%;
+  }
+
+  .input-wrapper,
+  button[type="submit"] {
+    width: 100%;
   }
 }
