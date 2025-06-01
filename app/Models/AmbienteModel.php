@@ -9,7 +9,7 @@ class AmbienteModel extends Model
     protected $table         = 'AMBIENTE';   
     protected $primaryKey    = 'ID';      
 
-    protected $allowedFields = ['DESCRICAO', 'TIPO', 'ID_USUARIO', 'ID_ENDERECO', 'FOTO'];
+    protected $allowedFields = ['DESCRICAO', 'TIPO', 'VL_MEDIO_CONTA_LUZ', 'PERCENTUAL_SUSTENTABILIDADE', 'ID_USUARIO', 'ID_ENDERECO', 'FOTO'];
 
     protected $useTimestamps = false; 
 

@@ -12,7 +12,7 @@ class AparelhoController extends BaseController
         $usuarioId = $session->get('usuarioId');
 
         if (!$usuarioId) {
-            return redirect()->to('/pages/login')->with('error', 'É necessário estar logado.');
+            return redirect()->to('/login')->with('error', 'É necessário estar logado.');
         }
 
         $ambiente = 1;

@@ -93,7 +93,7 @@ class UsuarioController extends Controller
         if ($usuario && password_verify($senha, $usuario['SENHA'])) {
             session()->set('usuarioId', $usuario['ID']);
             session()->set('usuarioNome', $usuario['NOME']);
-            return redirect()->to('/pages/ambientes');
+            return redirect()->to('/ambientes');
         } else {
             return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
         }
