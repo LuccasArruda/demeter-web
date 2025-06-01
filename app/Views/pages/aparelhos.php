@@ -7,8 +7,8 @@
 
     <main class="container mx-5">
         <div class="carrossel-cards d-flex overflow-x-scroll position-absolute translate-middle-y ms-5">
-            <?php if (!empty($ambientes)): ?>
-                <?php foreach ($ambientes as $ambiente): ?>
+            <?php if (!empty($aparelhos)): ?>
+                <?php foreach ($aparelhos as $aparelho): ?>
                     <div class="card ms-5 bg-card" style="width: 23rem;">
                         <img src="<?= base_url("assets/img/teste/ambiente1.png") ?>" class="card-img-top" alt="...">
                         <div class="card-body">

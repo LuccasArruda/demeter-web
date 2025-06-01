@@ -6,8 +6,15 @@
 
 .carrossel-cards{
     position: absolute;
-    left: 35px;
-    top: 60%;
+    left: 7%;
+    top: 15%;
+    height: 80%;
+    width: 90%;
+}
+
+.card-exibicao {
+    height: 93%;
+    width: 350px;
 }
 
 .btn-card{
@@ -21,6 +28,11 @@
 
     height: 50px;
     transition-duration: 250ms;
+}
+
+.titulo-card{
+    height: 50px;
+    vertical-align: middle;
 }
 
 .btn-card:hover{
@@ -38,8 +50,7 @@
 }
 
 .medidor-sustentabilidade {
-    margin-top: 18px;
-    margin-bottom: 18px;
+    margin-bottom: 15px;
     background-color: #D9D9D9;
     border-radius: 30px;
     height: 10px;

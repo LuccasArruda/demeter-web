@@ -104,7 +104,7 @@ class AmbienteController extends BaseController
 
         $dados = [
             'ambientes' => $ambientes,
-            'titulo' => 'Meus Ambientes'
+            'tituloExibicao' => 'Meus Ambientes'
         ];
 
         if (empty($ambientes)) {

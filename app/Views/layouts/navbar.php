@@ -3,9 +3,9 @@
         <ul class="p-0 w-100">
             <li>
                 <a href="/ambientes" class="text-decoration-none text-verde-primaria">
-                    <div class="logo-navbar rounded-circle ms-4 position-absolute top-0 mt-5 d-flex align-items-center">
+                    <div class="logo-navbar rounded-circle ms-4 position-absolute top-0 mt-3 d-flex align-items-center">
                         <img src="<?= base_url('assets/img/logo-sem-padding.png') ?>" alt="Logo Deméter">
-                        <h1 class="ms-3"><?= esc($tituloExibicao ?? '') ?></h1>
+                        <h1 class="ms-3 titulo-pagina"><?= esc($tituloExibicao ?? '') ?></h1>
                     </div>
                 </a>
             </li>

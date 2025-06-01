@@ -3,14 +3,17 @@
 .bg-cor-primaria{
     background-color: var(--cor-primaria);
 }
-
-.text-verde-primaria{
-    color: var(--cor-primaria);
-}
-
 .navbar-site {
     width: 70px;
     height: 100%;
+
+}
+
+.titulo-pagina {
+    position: absolute;
+    left: 100%;
+    display: block;
+    width: 500px;
 }
 
 .navbar-site ul li span{

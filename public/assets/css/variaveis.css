@@ -1,6 +1,7 @@
 :root {
   --cor-primaria: #238724;
   --verde-intermediario: #157316;
+  --verde-transparente: #159418b2;
   --verde-escuro: #154814;
   --fundo-claro: #edf8ef;
   --fonte-principal: "Bai Jamjuree", sans-serif;
@@ -9,4 +10,38 @@
   --cor-texto-claro: #666;
   --cor-titulo: #333;
   --branco-verde: #F3F3F3;
+}
+
+.bg-verde-escuro {
+  background-color: var(--verde-escuro);
+}
+
+.bg-verde-transparente{
+  background-color: var(--verde-transparente);
+}
+
+.text-verde-primaria {
+  color: var(--cor-primaria);
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--verde-escuro);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--verde-intermediario);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--verde-escuro);
+}
+
+::selection {
+  background-color: var(--verde-transparente);
+  color: var(--branco-verde);
 }
