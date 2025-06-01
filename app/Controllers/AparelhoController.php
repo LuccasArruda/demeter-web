@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\RedeEletricaModel;
 use App\Models\AparelhoModel;
+use App\Models\AmbienteModel;
 
 class AparelhoController extends BaseController
 {
@@ -19,7 +20,7 @@ class AparelhoController extends BaseController
         $ambiente = 1;
 
         $redeEletricaModel = new RedeEletricaModel();
-        $redesEletricas = $redeEletricaModel->getRedesPorAmbienteEUsuario($ambiente, $usuarioId);
+        $redesEletricas = $redeEletricaModel->getTodasRedesPorUsuario($usuarioId);
 
         $dados = [
             'redesEletricas' => $redesEletricas,
@@ -57,27 +58,51 @@ class AparelhoController extends BaseController
 
         $aparelhoModel = new AparelhoModel();
         $aparelhoModel->insert([
-            'NOME' => $nome,
-            'POTENCIA' => $consumo,
-            'TEMPO_USO' => $tempoUso,
-            'ENCE' => $ence,
+            'DESCRICAO' => $nome,
+            'CONSUMO' => $consumo,
+            //'TEMPO_USO' => $tempoUso,
+            //'ENCE' => $ence,
             'ID_REDE_ELETRICA' => $redeEletricaId,
-            'FOTO' => $nomeFoto
+            
         ]);
 
         return redirect()->to('/aparelhos')->with('success', 'Aparelho cadastrado com sucesso!');
     }
 
-    public function visualizar(): string
+    public function visualizar($idRede)
     {
-        $nomeAmbiente = 'Carlos';
-        $nomeRedeEletrica = 'Escritório';
-        $dados = [
+        $sessao = session();
+        $usuarioId = $sessao->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'Acesso negado.');
+        }
+
+        $redeModel = new RedeEletricaModel();
+        $rede = $redeModel->find($idRede);
+
+        if (!$rede) {
+            return redirect()->to('/ambientes')->with('error', 'Rede elétrica não encontrada.');
+        }
+
+        $ambienteModel = new AmbienteModel();
+        $ambiente = $ambienteModel->find($rede['ID_AMBIENTE']);
+
+        $nomeAmbiente = isset($ambiente) ? $ambiente['DESCRICAO'] . ' |' : '';
+        $nomeRedeEletrica = $rede['DESCRICAO'] . ' |';
+
+        $aparelhoModel = new AparelhoModel();
+        $aparelhos = $aparelhoModel->getAparelhosPorRedeEUsuario($idRede, $usuarioId);
+
+        $dados =  [
+            'aparelhos' => $aparelhos,
             'nomeAmbiente' => $nomeAmbiente,
             'nomeRedeEletrica' => $nomeRedeEletrica,
             'tituloExibicao' => 'Aparelhos'
         ];
+    
 
-        return view('pages/aparelhos', $dados);
+        return view('/pages/aparelhos', $dados);
     }
+
 }
