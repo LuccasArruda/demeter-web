@@ -22,7 +22,6 @@
     border-radius: 30px;
     padding: 13px;
     margin: 5px;
-    width: 150px;
     height: 80px;
     text-align: center;
 
@@ -47,6 +46,45 @@
 .bg-perigo-outline:hover{
     background-color: #dc3545;
     color: white;
+}
+
+.bg-alterar-outline {
+    border: 1px #0d6efd solid;
+    color: #0d6efd;
+}
+
+.bg-alterar-outline:hover {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.bg-visualizar-outline {
+    border: 1px var(--cor-primaria) solid;
+    color: var(--cor-primaria);
+}
+
+.bg-visualizar-outline:hover {
+    background-color: var(--cor-primaria);
+    color: white;
+}
+
+.container-informacoes-ambiente{
+    height: 40%;
+}
+
+.container-tipo-card {
+    position: absolute;
+    bottom: 0%;
+    right: 16px;
+    height: 50px;
+    width: 90%;
+    
+    .tipo-card {
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        border-radius: 60px;
+    }
 }
 
 .medidor-sustentabilidade {

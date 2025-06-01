@@ -11,7 +11,7 @@
       <div class="d-flex flex-wrap justify-content-between">
         <?= csrf_field() ?>
         <div class="formulario col col-12 col-md-6 my-3">
-          <h1>Cadastrar Ambiente</h1>
+          <h1>Cadastro de Ambiente</h1>
           <div class="my-4">
             <div class="linha">
               <input type="text" name="nome" placeholder="Nome do ambiente" required>
@@ -61,7 +61,7 @@
           </label>
         </div>
       </div>
-      <button type="submit" class="w-100">Cadastrar</button>
+      <button type="submit" class="w-100">Salvar</button>
   </div>
   </form>
 

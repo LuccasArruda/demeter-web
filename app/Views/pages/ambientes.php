@@ -10,9 +10,19 @@
             <?php if (!empty($ambientes)): ?>
                 <?php foreach ($ambientes as $ambiente): ?>
                     <div class="card my-3 bg-card m-2 card-exibicao">
-                        <div class="bg-verde-transparente position-absolute top-0 w-100 text-center d-flex text-light align-middle justify-content-center rounded-top-2 pt-3">
-                            <span class="material-icons rounded text-light me-2">solar_power</span>
-                            <p class="d-block">Um painel solar economizaria 30R$</p>
+                        <div class="position-absolute top-0 w-100 container-informacoes-ambiente">
+                            <div class="bg-verde-transparente position-relative top-0 w-100 text-center d-flex text-light align-middle justify-content-center rounded-top-2 pt-3">
+                                <span class="material-icons rounded text-light me-2">solar_power</span>
+                                <p class="d-block">Um painel solar economizaria 30R$</p>
+                            </div>
+                            <div class="container-tipo-card d-flex align-items-center justify-content-end">
+                                <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center" title="Visualizar Aparelhos" style="display: block;">
+                                    <span class="material-icons rounded text-light">home</span>
+                                </div>
+                                <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center" title="Visualizar Aparelhos" style="display: block;">
+                                    <span class="material-icons rounded text-light">store</span>
+                                </div>
+                            </div>
                         </div>
                         <img src="<?= base_url("assets/img/teste/ambiente1.png") ?>" class="card-img-top" alt="...">
                         <div class="card-body d-flex flex-column justify-content-between">
@@ -46,8 +56,15 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center w-100 py-2">
-                                <a href="/redes-eletricas/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-cor-primaria text-light d-block">Visualizar</a>
-                                <a href="" class="text-decoration-none btn-card bg-perigo-outline d-block">Excluir</a>
+                                <a href="/redes-eletricas/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-visualizar-outline d-block" title="Visualizar Redes Elétricas">
+                                    <span class="material-icons rounded">schema</span>
+                                </a>
+                                <a href="" class="text-decoration-none btn-card bg-alterar-outline d-block">
+                                    <span class="material-icons rounded">edit</span>
+                                </a>
+                                <a href="" class="text-decoration-none btn-card bg-perigo-outline d-block">
+                                    <span class="material-icons rounded">delete</span>
+                                </a>
                             </div>
                         </div>
                     </div>

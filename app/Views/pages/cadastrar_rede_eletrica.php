@@ -12,7 +12,7 @@
                 <?= csrf_field() ?>
                 <div class="formulario col col-12 col-md-6 my-3 d-flex align-items-center">
                     <div>
-                        <h1>Cadastrar Rede Elétrica</h1>
+                        <h1>Cadastro de Rede Elétrica</h1>
                         <div class="linha">
                             <input type="text" name="descricao" placeholder="Descrição da Rede Elétrica" required>
                             <select name="ambiente">
@@ -33,7 +33,7 @@
                     </label>
                 </div>
             </div>
-            <button type="submit" class="w-100">Cadastrar</button>
+            <button type="submit" class="w-100">Salvar</button>
     </div>
     </form>
 

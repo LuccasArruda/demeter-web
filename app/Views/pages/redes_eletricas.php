@@ -45,8 +45,15 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center w-100 py-2">
-                                <a href="/aparelhos/<?= esc($rede['ID']) ?>" class="text-decoration-none btn-card bg-cor-primaria text-light d-block">Visualizar</a>
-                                <a href="" class="text-decoration-none btn-card bg-perigo-outline d-block">Excluir</a>
+                                <a href="/redes-eletricas/<?= esc($rede['ID']) ?>" class="text-decoration-none btn-card bg-visualizar-outline d-block" title="Visualizar Aparelhos">
+                                    <span class="material-icons rounded">devices</span>
+                                </a>
+                                <a href="" class="text-decoration-none btn-card bg-alterar-outline d-block">
+                                    <span class="material-icons rounded">edit</span>
+                                </a>
+                                <a href="" class="text-decoration-none btn-card bg-perigo-outline d-block">
+                                    <span class="material-icons rounded">delete</span>
+                                </a>
                             </div>
                         </div>
                     </div>
