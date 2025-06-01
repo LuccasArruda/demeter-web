@@ -20,8 +20,12 @@ class RedeEletricaController extends BaseController
         $ambientes = $ambienteModel->getAmbientesPorUsuario($usuarioId);
 
         $dados = [ 
-            'ambientes' => $ambientes
+            'ambientes' => $ambientes,
+            'nomeAmbiente' => '',
+            'nomeRedeEletrica' => '',
+            'tituloExibicao' => ''
         ];
+
         return view('/pages/cadastrar_rede_eletrica', $dados);
     }
     
@@ -36,7 +40,22 @@ class RedeEletricaController extends BaseController
 
         $redeEletricaModel = new RedeEletricaModel();
         $redes = $redeEletricaModel->getRedesPorAmbienteEUsuario($id, $usuarioId);
+        
+        $ambienteModel = new AmbienteModel();
+        $ambiente = $ambienteModel->getAmbientePorID($id);
+        if(isset($ambiente)){
+            $ambiente['DESCRICAO'] = $ambiente['DESCRICAO'].' |';
+        }
 
-        return view('/pages/redes_eletricas', ['redes' => $redes]);
+        $nomeAmbiente = $ambiente['DESCRICAO'];
+
+        $dados = [
+            'redes' => $redes,
+            'nomeAmbiente' => $nomeAmbiente,
+            'nomeRedeEletrica' => '',
+            'tituloExibicao' => 'Redes Elétricas'
+        ];
+
+        return view('/pages/redes_eletricas', $dados);
     }
 }

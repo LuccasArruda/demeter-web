@@ -33,4 +33,9 @@ class AmbienteModel extends Model
     {
         return $this->delete($id);
     }
+
+    public function getAmbientePorID($id)
+    {
+        return $this->where('ID', $id)->first();
+    }
 }

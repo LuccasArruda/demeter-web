@@ -13,7 +13,9 @@ class AmbienteController extends BaseController
 
         $dados = [ 
             'estados' => $estados,
-            'tituloTela' => 'Deméter - Cadastrar Ambiente'
+            'nomeAmbiente' => '',
+            'nomeRedeEletrica' => '',
+            'tituloExibicao' => ''
         ];
 
         return view('pages/cadastrar_ambiente', $dados);
@@ -104,6 +106,8 @@ class AmbienteController extends BaseController
 
         $dados = [
             'ambientes' => $ambientes,
+            'nomeAmbiente' => '',
+            'nomeRedeEletrica' => '',
             'tituloExibicao' => 'Meus Ambientes'
         ];
 

@@ -10,17 +10,40 @@
 }
 
 .titulo-pagina {
+    .nome-ambiente {
+        font-size: 30px;
+        font-weight: 100;
+        color: gray;
+        transition-duration: 250ms;
+    }
+
+    .nome-ambiente:hover {
+        color: var(--cor-primaria);
+    }
+
+    .nome-rede-eletrica {
+        font-size: 30px;
+        font-weight: 200;
+        color: rgb(100, 100, 100);
+        transition-duration: 250ms;
+    }
+
+    .nome-rede-eletrica:hover {
+        color: var(--cor-primaria);
+    }
+
+    font-size: 30px;
     position: absolute;
     left: 100%;
     display: block;
-    width: 500px;
+    width: 1000px;
 }
 
-.navbar-site ul li span{
+.navbar-site ul li .icone-navbar{
     transition-duration: 250ms;
 }
 
-.navbar-site ul li span:hover{
+.navbar-site ul li .icone-navbar:hover{
     background-color: var(--verde-intermediario);
     cursor: pointer;
     transform: scale(1.15);

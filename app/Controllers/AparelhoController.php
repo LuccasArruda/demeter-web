@@ -23,6 +23,9 @@ class AparelhoController extends BaseController
 
         $dados = [
             'redesEletricas' => $redesEletricas,
+            'nomeAmbiente' => '',
+            'nomeRedeEletrica' => '',
+            'tituloExibicao' => '',
             'tituloTela' => 'Deméter - Cadastrar Aparelho'
         ];
 
@@ -67,6 +70,14 @@ class AparelhoController extends BaseController
 
     public function visualizar(): string
     {
-        return view('pages/aparelhos');
+        $nomeAmbiente = 'Carlos';
+        $nomeRedeEletrica = 'Escritório';
+        $dados = [
+            'nomeAmbiente' => $nomeAmbiente,
+            'nomeRedeEletrica' => $nomeRedeEletrica,
+            'tituloExibicao' => 'Aparelhos'
+        ];
+
+        return view('pages/aparelhos', $dados);
     }
 }

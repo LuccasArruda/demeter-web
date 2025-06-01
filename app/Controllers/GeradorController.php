@@ -6,6 +6,12 @@ class GeradorController extends BaseController
 {
     public function paginaCadastroGerador(): string
     {
-        return view('pages/cadastrar_gerador');
+        $dados = [
+            'nomeAmbiente' => '',
+            'nomeRedeEletrica' => '',
+            'tituloExibicao' => ''
+        ];
+
+        return view('pages/cadastrar_gerador', $dados);
     }
 }

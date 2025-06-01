@@ -5,14 +5,14 @@
 
 </head>
 
-<body>
+<body class="bg-body-secondary">
     <?= $this->include('layouts/navbar') ?>
 
-    <main class="container mx-5">
-        <div class="carrossel-cards d-flex overflow-x-scroll position-absolute translate-middle-y ms-5">
+    <main class="w-100 h-100 ">
+        <div class="carrossel-cards d-flex overflow-x-hidden justify-content-center bg-light rounded-5">
             <?php if (!empty($redes)): ?>
                 <?php foreach ($redes as $rede): ?>
-                    <div class="card ms-5 bg-card" style="width: 23rem;">
+                    <div class="card my-3 bg-card m-2 card-exibicao">
                         <img src="<?= base_url("assets/img/teste/ambiente1.png") ?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="text-verde-primaria text-center"><?= esc($rede['ID']) ?></h5>
@@ -51,10 +51,11 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-            <?php elseif (!isset($mensagem_status)): // Se $ambientes estiver vazio e não houver mensagem_status ?>
+            <?php elseif (!isset($mensagem_status)): // Se $ambientes estiver vazio e não houver mensagem_status 
+            ?>
                 <p>Nenhuma Rede encontrada para esse ambeinte.</p>
             <?php endif; ?>
- 
+
         </div>
     </main>
 
