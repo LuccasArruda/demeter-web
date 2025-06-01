@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li class="text-center">
-                <a href="" class="text-light text-decoration-none">
+                <a href="/logout-usuario" class="text-light text-decoration-none">
                     <span class="material-icons mb-2 p-1 rounded icone-navbar">logout</span>
                 </a>
             </li>

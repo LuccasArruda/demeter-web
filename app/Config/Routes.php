@@ -10,6 +10,7 @@ $routes->get('/login', 'UsuarioController::paginaLogin');
 $routes->get('/login/recuperar-senha', 'UsuarioController::paginaRecuperarSenha');
 $routes->post('/autenticar-usuario', 'UsuarioController::autenticar');
 $routes->get('/cadastrar-usuario', 'UsuarioController::paginaCadastro');
+$routes->get('/logout-usuario', 'UsuarioController::logout');
 $routes->post('/cadastrar-usuario', 'UsuarioController::cadastrar');
 
 $routes->get('/cadastrar-ambiente', 'AmbienteController::paginaCadastro');
