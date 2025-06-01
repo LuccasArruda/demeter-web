@@ -23,4 +23,12 @@ class RedeEletricaModel extends Model
             ->findAll();
     }
 
+    public function getTodasRedesPorUsuario($usuarioId)
+    {
+        return $this->select('REDE_ELETRICA.*')
+            ->join('AMBIENTE', 'AMBIENTE.ID = REDE_ELETRICA.ID_AMBIENTE')
+            ->where('AMBIENTE.ID_USUARIO', $usuarioId)
+            ->findAll();
+    }
+
 }

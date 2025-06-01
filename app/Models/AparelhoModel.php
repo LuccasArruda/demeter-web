@@ -1,11 +1,26 @@
 <?php
-    namespace App\Models;
-    use CodeIgniter\Model;
-    
-    class AparelhoModel extends Model
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class AparelhoModel extends Model
+{
+    protected $table         = 'APARELHO';
+    protected $primaryKey    = 'ID';
+
+    protected $allowedFields = ['ID_REDE_ELETRICA', 'DESCRICAO', 'FABRICANTE', 'CONSUMO', 'FOTO'];
+
+    protected $useTimestamps = false;
+
+    public function getAparelhosPorRedeEUsuario($idRede, $usuarioId)
     {
-        protected $table = 'APARELHO';
-        protected $primaryKey = 'ID';
-        protected $allowedFields = ['NOME', 'POTENCIA', 'TEMPO_USO', 'ENCE', 'ID_REDE_ELETRICA', 'FOTO'];
+        return $this->select('APARELHO.*')
+            ->join('REDE_ELETRICA', 'REDE_ELETRICA.ID = APARELHO.ID_REDE_ELETRICA')
+            ->join('AMBIENTE', 'AMBIENTE.ID = REDE_ELETRICA.ID_AMBIENTE')
+            ->where('APARELHO.ID_REDE_ELETRICA', $idRede)
+            ->where('AMBIENTE.ID_USUARIO', $usuarioId)
+            ->findAll();
     }
+}
 ?>
