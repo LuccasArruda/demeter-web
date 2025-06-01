@@ -5,20 +5,19 @@
 <body class="bg-body-secondary">
     <?= $this->include('layouts/navbar') ?>
 
-    <div class="cadastro-ambiente bg-light my-5 rounded-5 position-absolute top-50 start-50 translate-middle">
+    <div class="cadastro-ambiente bg-light rounded-5 position-absolute top-50 start-50 translate-middle">
         <a href="<?= site_url('ambientes') ?>" class="retornar">← Retornar</a>
         <form action="<?= site_url('ambiente/salvar') ?>" method="post" enctype="multipart/form-data">
             <div class="d-flex flex-wrap justify-content-between">
                 <?= csrf_field() ?>
-                <div class="formulario col col-12 col-md-6">
-                    <h1>Cadastrar Novo Aparelho</h1>
+                <div class="formulario col col-12 col-md-6 my-3">
+                    <h1>Cadastrar Aparelho</h1>
                     <div class="my-4">
                         <div class="linha">
                             <input type="text" name="nome" placeholder="Nome do aparelho" required>
                             <input type="number" name="consumo" placeholder="Consumo (KWh)" required>
                             <input type="number" name="tempoUsoMedio" placeholder="Tempo de Uso Médio (Horas)" required>
                         </div>
-
                         <div class="linha">
                             <select name="ENCE">
                                 <option value="">Classificação ENCE</option>
