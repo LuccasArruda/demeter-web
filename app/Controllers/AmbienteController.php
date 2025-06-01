@@ -97,7 +97,7 @@ class AmbienteController extends BaseController
         $usuarioId = $sessao->get('usuarioId');
 
         if (!$usuarioId) {
-            return redirect()->to('/pages/login')->with('error', 'Acesso negado. Faça login para continuar.');
+            return redirect()->to('/login')->with('error', 'Acesso negado. Faça login para continuar.');
         }
 
         $ambienteModel = new AmbienteModel();
