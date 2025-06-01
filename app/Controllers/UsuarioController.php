@@ -98,7 +98,12 @@ class UsuarioController extends Controller
             return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
         }
     }
-
+    
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/login')->with('success', 'Logout realizado com sucesso!');
+    }
 
 }
 
