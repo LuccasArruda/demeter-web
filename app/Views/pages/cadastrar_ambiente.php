@@ -3,20 +3,16 @@
 </head>
 
 <body class="bg-body-secondary">
-
   <div class="cadastro-ambiente bg-light my-5 rounded-5">
-
     <a href="<?= site_url('ambientes') ?>" class="retornar">← Retornar</a>
 
     <form action="<?= site_url('ambiente/salvar') ?>" method="post" enctype="multipart/form-data">
       <div class="row">
-        <!-- Painel de Ilustração -->
         <div class="col d-none d-sm-none d-md-block">
           <div class="ilustracao">
             <img src="<?= base_url('assets/img/ilustracao-ambiente.svg') ?>" alt="Ilustração Ambiente" class="" />
           </div>
         </div>
-        <!-- Formulário -->
         <?= csrf_field() ?>
         <div class="formulario col-12 col-md-6">
           <h1>Cadastrar Novo Ambiente</h1>

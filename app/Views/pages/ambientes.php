@@ -2,7 +2,7 @@
 
 </head>
 
-<body>
+<body class="bg-body-secondary">
     <?= $this->include('layouts/navbar') ?>
 
     <main class="container mx-5">
