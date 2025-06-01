@@ -25,18 +25,18 @@ class AmbienteController extends BaseController
         $usuarioId = $session->get('usuarioId');
 
         if (!$usuarioId) {
-            return redirect()->to('/pages/login')->with('error', 'É necessário estar logado.');
+            return redirect()->to('/login')->with('error', 'É necessário estar logado.');
         }
 
         // Receber dados do formulário
-        $estadoNome = $this->request->getPost('estado');
+        $estadoId = $this->request->getPost('estado');
         $cidadeNome = $this->request->getPost('cidade');
         $bairroNome = $this->request->getPost('bairro');
         $rua = $this->request->getPost('rua');
-        $numero = 153;
-        //$numero = $this->request->getPost('numero');
+        $numero = $this->request->getPost('numero');
         $descricao = $this->request->getPost('nome');
         $tipo = $this->request->getPost('tipo'); // 'P' ou 'F'
+        $valorContaLuz = $this->request->getPost('valorMedioContaLuz');
 
         // FOTO
         $foto = $this->request->getFile('foto');
@@ -47,19 +47,10 @@ class AmbienteController extends BaseController
         }
 
         // MODELS
-        $estadoModel = new \App\Models\EstadoModel();
         $cidadeModel = new \App\Models\CidadeModel();
         $bairroModel = new \App\Models\BairroModel();
         $enderecoModel = new \App\Models\EnderecoModel();
         $ambienteModel = new \App\Models\AmbienteModel();
-
-        // ESTADO
-        $estado = $estadoModel->where('NOME', $estadoNome)->first();
-        if (!$estado) {
-            $estadoId = $estadoModel->insert(['NOME' => $estadoNome, 'SIGLA' => substr($estadoNome, 0, 2)]);
-        } else {
-            $estadoId = $estado['ID'];
-        }
 
         // CIDADE
         $cidade = $cidadeModel->where(['NOME' => $cidadeNome, 'ID_ESTADO' => $estadoId])->first();
@@ -87,13 +78,15 @@ class AmbienteController extends BaseController
         // AMBIENTE
         $ambienteModel->insert([
             'DESCRICAO' => $descricao,
-            'TIPO' => $tipo,
+            'TIPO' => strtoupper($tipo[0]), // transforma 'pessoal' em 'P', etc
+            'VL_MEDIO_CONTA_LUZ' => $valorContaLuz,
+            'PERCENTUAL_SUSTENTABILIDADE' => 0,
             'ID_USUARIO' => $usuarioId,
             'ID_ENDERECO' => $enderecoId,
             'FOTO' => $nomeFoto
         ]);
 
-        return redirect()->to('/pages/ambientes')->with('success', 'Ambiente cadastrado com sucesso!');
+        return redirect()->to('/ambientes')->with('success', 'Ambiente cadastrado com sucesso!');
     }
 
     public function meusAmbientes() 
