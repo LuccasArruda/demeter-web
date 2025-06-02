@@ -17,8 +17,6 @@ class AparelhoController extends BaseController
             return redirect()->to('/login')->with('error', 'É necessário estar logado.');
         }
 
-        $ambiente = 1;
-
         $redeEletricaModel = new RedeEletricaModel();
         $redesEletricas = $redeEletricaModel->getTodasRedesPorUsuario($usuarioId);
 
@@ -60,13 +58,22 @@ class AparelhoController extends BaseController
         $aparelhoModel->insert([
             'DESCRICAO' => $nome,
             'CONSUMO' => $consumo,
-            //'TEMPO_USO' => $tempoUso,
-            //'ENCE' => $ence,
+            'TEMPO_DE_USO' => $tempoUso,
+            'ENCE' => $ence,
             'ID_REDE_ELETRICA' => $redeEletricaId,
             
         ]);
 
-        return redirect()->to('/aparelhos')->with('success', 'Aparelho cadastrado com sucesso!');
+        $redeId = $redeEletricaId; 
+        $redeModel = new RedeEletricaModel();
+        $rede = $redeModel->find($redeId);
+        $ambienteId = $rede['ID_AMBIENTE'];
+
+        $ambienteModel = new AmbienteModel();
+        $pontuacao = $ambienteModel->calcularPontuacaoSustentabilidadePorAmbiente($ambienteId);
+        $ambienteModel->update($ambienteId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacao]);
+
+        return redirect()->to("/aparelhos/$redeEletricaId")->with('success', 'Aparelho cadastrado com sucesso!');
     }
 
     public function visualizar($idRede)
