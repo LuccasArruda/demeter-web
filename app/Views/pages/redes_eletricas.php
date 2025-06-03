@@ -9,19 +9,19 @@
     <?= $this->include('layouts/navbar') ?>
 
     <main class="w-100 h-100 ">
-        <div class="carrossel-cards d-flex overflow-x-hidden justify-content-center bg-light rounded-5">
+        <div class="carrossel-cards row overflow-x-scroll justify-content-center bg-light rounded-5">
             <?php if (!empty($redes)): ?>
                 <?php foreach ($redes as $rede): ?>
-                    <div class="card my-3 bg-card m-2 card-exibicao">
+                    <div class="card my-3 bg-card m-2 card-exibicao p-0">
                         <img src="<?= base_url("assets/img/teste/ambiente1.png") ?>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="text-verde-primaria text-center"><?= esc($rede['ID']) ?></h5>
+                            <h5 class="text-verde-primaria text-center"><?= esc($rede['DESCRICAO']) ?></h5>
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex">
                                     <span class="material-icons mb-3 rounded text-verde-primaria">electric_bolt</span>
                                     <p class="ms-2">Gasto</p>
                                 </div>
-                                <p class="me-2 text-end">40000 KWh</p>
+                                <p class="me-2 text-end"> KWh</p>
                             </div>
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex">

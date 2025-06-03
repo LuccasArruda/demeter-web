@@ -29,10 +29,6 @@
   height: 5px;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--verde-escuro);
-}
-
 ::-webkit-scrollbar-thumb {
   background: var(--verde-intermediario);
 }

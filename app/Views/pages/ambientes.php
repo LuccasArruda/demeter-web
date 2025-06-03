@@ -6,20 +6,22 @@
     <?= $this->include('layouts/navbar') ?>
 
     <main class="w-100 h-100 ">
-        <div class="carrossel-cards d-flex overflow-x-hidden justify-content-center bg-light rounded-5">
+        <div class="carrossel-cards row overflow-x-scroll justify-content-center bg-light rounded-5">
             <?php if (!empty($ambientes)): ?>
                 <?php foreach ($ambientes as $ambiente): ?>
-                    <div class="card my-3 bg-card m-2 card-exibicao">
+                    <div class="card my-3 bg-card m-2 card-exibicao p-0">
                         <div class="position-absolute top-0 w-100 container-informacoes-ambiente">
                             <div class="bg-verde-transparente position-relative top-0 w-100 text-center d-flex text-light align-middle justify-content-center rounded-top-2 pt-3">
                                 <span class="material-icons rounded text-light me-2">solar_power</span>
                                 <p class="d-block">Um painel solar economizaria 30R$</p>
                             </div>
                             <div class="container-tipo-card d-flex align-items-center justify-content-end">
-                                <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center <?php $texto = (esc($ambiente['TIPO']) == "PR") ? "d-none" : "d-block"; echo $texto; ?>" title="Visualizar Aparelhos" style="display: block;">
+                                <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center <?php $texto = (esc($ambiente['TIPO']) == "PR") ? "d-none" : "d-block";
+                                                                                                                        echo $texto; ?>" title="Visualizar Aparelhos" style="display: block;">
                                     <span class="material-icons rounded text-light">home</span>
                                 </div>
-                                <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center <?php $texto = (esc($ambiente['TIPO']) == "PE") ? "d-none" : "d-block"; echo $texto; ?>" title="Visualizar Aparelhos" style="display: block;">
+                                <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center <?php $texto = (esc($ambiente['TIPO']) == "PE") ? "d-none" : "d-block";
+                                                                                                                        echo $texto; ?>" title="Visualizar Aparelhos" style="display: block;">
                                     <span class="material-icons rounded text-light">store</span>
                                 </div>
                             </div>

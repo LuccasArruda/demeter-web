@@ -7,28 +7,17 @@
 
     <div class="cadastro-ambiente bg-light rounded-5 position-absolute top-50 start-50 translate-middle">
         <a href="<?= site_url('ambientes') ?>" class="retornar">← Retornar</a>
-        <form action="<?= site_url('ambiente/salvar') ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= site_url('aparelho/salvar') ?>" method="post" enctype="multipart/form-data">
             <div class="d-flex flex-wrap justify-content-between">
                 <?= csrf_field() ?>
-                <div class="formulario col col-12 col-md-6">
+                <div class="formulario col col-12 col-md-6 my-3">
                     <h1>Cadastro de Gerador</h1>
                     <div class="my-4">
                         <div class="linha">
                             <input type="text" name="nome" placeholder="Nome do aparelho" required>
-                            <input type="number" name="consumo" placeholder="Consumo (KWh)" required>
-                            <input type="number" name="tempoUsoMedio" placeholder="Tempo de Uso Médio (Horas)" required>
+                            <input type="number" name="energiaGerada" placeholder="Energia Gerada (KWh)" required>
                         </div>
                         <div class="linha">
-                            <select name="ENCE">
-                                <option value="">Classificação ENCE</option>
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="C">C</option>
-                                <option value="D">D</option>
-                                <option value="E">E</option>
-                                <option value="F">F</option>
-                                <option value="G">G</option>
-                            </select>
                             <select name="redeEletrica">
                                 <option value="">Rede Elétrica</option>
                                 <?php foreach ($redesEletricas as $redeEletrica): ?>

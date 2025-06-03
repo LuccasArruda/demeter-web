@@ -20,6 +20,11 @@
                 </a>
             </li>
             <li class="text-center">
+                <a href="/cadastrar-gerador" class="text-light text-decoration-none">
+                    <span class="material-icons mb-2 p-1 rounded icone-navbar">solar_power</span>
+                </a>
+            </li>
+            <li class="text-center">
                 <a href="/cadastrar-aparelho" class="text-light text-decoration-none">
                     <span class="material-icons mb-2 p-1 rounded icone-navbar">devices</span>
                 </a>
