@@ -24,6 +24,11 @@
                                     <option value="<?= esc($redeEletrica['ID']) ?>"><?= esc($redeEletrica['DESCRICAO']) ?></option>
                                 <?php endforeach; ?>
                             </select>
+                            <select name="tipo">
+                                <option value="">Tipo de Gerador</option>
+                                <option value="R">Renvovável</option>
+                                <option value="NR">Não Renvovável</option>
+                            </select>
                         </div>
                     </div>
                 </div>
