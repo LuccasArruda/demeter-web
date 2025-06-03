@@ -85,7 +85,7 @@ class AmbienteController extends BaseController
             'PERCENTUAL_SUSTENTABILIDADE' => 0,
             'ID_USUARIO' => $usuarioId,
             'ID_ENDERECO' => $enderecoId,
-            'FOTO' => $nomeFoto
+            //'FOTO' => $nomeFoto
         ]);
 
         return redirect()->to('/ambientes')->with('success', 'Ambiente cadastrado com sucesso!');
