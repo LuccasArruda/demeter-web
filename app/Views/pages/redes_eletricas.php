@@ -38,7 +38,7 @@
                                 <p class="me-2 text-end">40000 KWh</p>
                             </div>
                             <div class="medidor-sustentabilidade">
-                                <div class="progresso" style="width: 100%">
+                                <div class="progresso" style="width: <?= esc($rede['PERCENTUAL_SUSTENTABILIDADE']) ?>%">
                                     <div class="medidor translate-middle-y top-50" style="left: 90%;">
                                         <span class="material-icons rounded">energy_savings_leaf</span>
                                     </div>
