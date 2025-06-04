@@ -25,6 +25,7 @@ $routes->post('/rede-eletrica/salvar', 'RedeEletricaController::cadastrar');
 $routes->get('/cadastrar-aparelho', 'AparelhoController::paginaCadastroAparelho');
 $routes->post('/aparelho/salvar', 'AparelhoController::cadastrar');
 $routes->get('/aparelhos/(:num)', 'AparelhoController::visualizar/$1');
+$routes->get('/aparelho/excluir/(:num)', 'AparelhoController::excluir/$1');
 
 $routes->get('/cadastrar-gerador', 'GeradorController::paginaCadastroGerador');
 $routes->post('/gerador/salvar', 'GeradorController::cadastrarGerador');
