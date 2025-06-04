@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\RedeEletricaModel;
 use App\Models\GeradorModel;
+use App\Libraries\SustentabilidadeService;
 
 class GeradorController extends BaseController
 {
@@ -15,8 +16,6 @@ class GeradorController extends BaseController
         if (!$usuarioId) {
             return redirect()->to('/login')->with('error', 'É necessário estar logado.');
         }
-
-        $ambiente = 1;
 
         $redeEletricaModel = new RedeEletricaModel();
         $redesEletricas = $redeEletricaModel->getTodasRedesPorUsuario($usuarioId);
@@ -44,7 +43,7 @@ class GeradorController extends BaseController
         $nome = $this->request->getPost('nome');
         $energiaGerada = $this->request->getPost('energiaGerada');
         $redeEletricaId = $this->request->getPost('redeEletrica');
-
+        $tipo = $this->request->getPost('tipo');
         $foto = $this->request->getFile('foto');
         $nomeFoto = null;
 
@@ -55,13 +54,32 @@ class GeradorController extends BaseController
 
         $geradorModel = new GeradorModel();
         $geradorModel->insert([
-            'NOME' => $nome,
-            'ENERGIA_GERADA' => $energiaGerada,
-            //'TIPO' => 
+            'DESCRICAO' => $nome,
+            'POTENCIA' => $energiaGerada,
+            'TIPO' => $tipo,
             'ID_REDE_ELETRICA' => $redeEletricaId,
             //'IMAGEM_CAMINHO' => $nomeFoto ? 'uploads/' . $nomeFoto : null,
         ]);
+        
+        // Atualiza a pontuação da rede e do ambiente
+        $redeModel = new \App\Models\RedeEletricaModel();
+        $ambienteModel = new \App\Models\AmbienteModel();
+        $service = new SustentabilidadeService();
 
-        return redirect()->to('/aparelhos')->with('success', 'Gerador cadastrado com sucesso!');
+        $rede = $redeModel->find($redeEletricaId);
+
+        if ($rede) {
+            // Atualiza rede
+            $pontuacaoRede = round($service->calcularPorRede($redeEletricaId));
+            $redeModel->update($redeEletricaId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoRede]);
+
+            // Atualiza ambiente
+            if (isset($rede['ID_AMBIENTE'])) {
+                $pontuacaoAmbiente = round($service->calcularPorAmbiente($rede['ID_AMBIENTE']));
+                $ambienteModel->update($rede['ID_AMBIENTE'], ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
+            }
+        }
+        
+        return redirect()->to("/aparelhos/$redeEletricaId")->with('success', 'Gerador cadastrado com sucesso!');
     }
 }

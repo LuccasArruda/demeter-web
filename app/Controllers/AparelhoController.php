@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\RedeEletricaModel;
 use App\Models\AparelhoModel;
 use App\Models\AmbienteModel;
+use App\Libraries\SustentabilidadeService;
 
 class AparelhoController extends BaseController
 {
@@ -60,13 +61,32 @@ class AparelhoController extends BaseController
         $aparelhoModel->insert([
             'DESCRICAO' => $nome,
             'CONSUMO' => $consumo,
-            //'TEMPO_USO' => $tempoUso,
-            //'ENCE' => $ence,
+            'TEMPO_DE_USO' => $tempoUso,
+            'ENCE' => $ence,
             'ID_REDE_ELETRICA' => $redeEletricaId,
             
         ]);
 
-        return redirect()->to('/aparelhos')->with('success', 'Aparelho cadastrado com sucesso!');
+        // Atualiza a pontuação da rede e do ambiente
+        $redeModel = new \App\Models\RedeEletricaModel();
+        $ambienteModel = new \App\Models\AmbienteModel();
+        $service = new SustentabilidadeService();
+
+        $rede = $redeModel->find($redeEletricaId);
+
+        if ($rede) {
+            // Atualiza rede
+            $pontuacaoRede = round($service->calcularPorRede($redeEletricaId));
+            $redeModel->update($redeEletricaId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoRede]);
+
+            // Atualiza ambiente
+            if (isset($rede['ID_AMBIENTE'])) {
+                $pontuacaoAmbiente = round($service->calcularPorAmbiente($rede['ID_AMBIENTE']));
+                $ambienteModel->update($rede['ID_AMBIENTE'], ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
+            }
+        }
+
+        return redirect()->to("/aparelhos/$redeEletricaId")->with('success', 'Aparelho cadastrado com sucesso!');
     }
 
     public function visualizar($idRede)

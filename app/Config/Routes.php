@@ -27,7 +27,7 @@ $routes->post('/aparelho/salvar', 'AparelhoController::cadastrar');
 $routes->get('/aparelhos/(:num)', 'AparelhoController::visualizar/$1');
 
 $routes->get('/cadastrar-gerador', 'GeradorController::paginaCadastroGerador');
-$routes->post('/cadastrar-gerador', 'GeradorController::cadastrarGerador');
+$routes->post('/gerador/salvar', 'GeradorController::cadastrarGerador');
 
 $routes->get('/teste-conexao', 'Teste::testarConexao');
 

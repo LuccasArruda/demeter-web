@@ -9,7 +9,7 @@ class RedeEletricaModel extends Model
     protected $table         = 'REDE_ELETRICA';   
     protected $primaryKey    = 'ID';      
 
-    protected $allowedFields = ['ID_AMBIENTE', 'DESCRICAO', 'FOTO'];
+    protected $allowedFields = ['ID_AMBIENTE', 'DESCRICAO', 'FOTO', 'PERCENTUAL_SUSTENTABILIDADE'];
 
     protected $useTimestamps = false; 
 

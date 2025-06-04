@@ -7,7 +7,7 @@
 
     <div class="cadastro-ambiente bg-light rounded-5 position-absolute top-50 start-50 translate-middle">
         <a href="<?= site_url('ambientes') ?>" class="retornar">← Retornar</a>
-        <form action="<?= site_url('cadastrar-gerador') ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= site_url('gerador/salvar') ?>" method="post" enctype="multipart/form-data">
             <div class="d-flex flex-wrap justify-content-between">
                 <?= csrf_field() ?>
                 <div class="formulario col col-12 col-md-6 my-3">
