@@ -51,7 +51,7 @@
                                 <a href="" class="text-decoration-none btn-card bg-alterar-outline d-block">
                                     <span class="material-icons rounded">edit</span>
                                 </a>
-                                <a href="" class="text-decoration-none btn-card bg-perigo-outline d-block">
+                                <a href="/rede-eletrica/excluir/<?= esc($rede['ID']) ?>" class="text-decoration-none btn-card bg-perigo-outline d-block">
                                     <span class="material-icons rounded">delete</span>
                                 </a>
                             </div>

@@ -100,4 +100,49 @@ class RedeEletricaController extends BaseController
 
         return view('/pages/redes_eletricas', $dados);
     }
+
+    public function excluir($id)
+    {
+        $sessao = session();
+        $usuarioId = $sessao->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'Acesso negado. Faça login para continuar.');
+        }
+
+        $redeModel = new \App\Models\RedeEletricaModel();
+        $ambienteModel = new \App\Models\AmbienteModel();
+        $aparelhoModel = new \App\Models\AparelhoModel();
+        $geradorModel = new \App\Models\GeradorModel();
+        $sustentabilidadeService = new \App\Libraries\SustentabilidadeService();
+
+        $rede = $redeModel->find($id);
+
+        if (!$rede) {
+            return redirect()->back()->with('error', 'Rede elétrica não encontrada.');
+        }
+
+        $ambienteId = $rede['ID_AMBIENTE'];
+
+        // Verifica se existem aparelhos ou geradores ligados à rede
+        $aparelhos = $aparelhoModel->where('ID_REDE_ELETRICA', $id)->countAllResults();
+        $geradores = $geradorModel->where('ID_REDE_ELETRICA', $id)->countAllResults();
+
+        if ($aparelhos > 0 || $geradores > 0) {
+            //return redirect()->back()->with('error', 'A rede possui aparelhos ou geradores vinculados e não pode ser excluída.');
+        }
+
+        if (!$redeModel->delete($id)) {
+            return redirect()->back()->with('error', 'Erro ao excluir a rede elétrica.');
+        }
+
+        // Atualiza pontuação de sustentabilidade do ambiente
+        if ($ambienteId) {
+            $pontuacaoAmbiente = round($sustentabilidadeService->calcularPorAmbiente($ambienteId));
+            $ambienteModel->update($ambienteId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
+        }
+
+        return redirect()->to("/redes-eletricas/$ambienteId")->with('success', 'Rede Elétrica excluída com sucesso!');
+    }
+
 }
