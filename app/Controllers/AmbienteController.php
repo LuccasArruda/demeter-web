@@ -116,7 +116,7 @@ class AmbienteController extends BaseController
             'DESCRICAO' => $descricao,
             'TIPO' => strtoupper($tipo[0]) . strtoupper($tipo[1]),
             'VL_MEDIO_CONTA_LUZ' => $valorContaLuz,
-            'PERCENTUAL_SUSTENTABILIDADE' => 0,
+            //'PERCENTUAL_SUSTENTABILIDADE' => 0,
             'ID_USUARIO' => $usuarioId,
             'ID_ENDERECO' => $enderecoId,
             //'FOTO' => $nomeFoto

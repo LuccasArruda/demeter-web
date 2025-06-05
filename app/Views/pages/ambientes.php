@@ -13,7 +13,7 @@
                         <div class="position-absolute top-0 w-100 container-informacoes-ambiente">
                             <div class="bg-verde-transparente position-relative top-0 w-100 text-center d-flex text-light align-middle justify-content-center rounded-top-2 pt-3">
                                 <span class="material-icons rounded text-light me-2">solar_power</span>
-                                <p class="d-block">Um painel solar economizaria 40R$</p>
+                                <p class="d-block">Paineis Solares podem gerar uma economia de até 90%</p>
                             </div>
                             <div class="container-tipo-card d-flex align-items-center justify-content-end">
                                 <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center <?php $texto = (esc($ambiente['TIPO']) == "PR") ? "d-none" : "d-block";
