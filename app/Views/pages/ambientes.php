@@ -32,9 +32,9 @@
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex">
                                     <span class="material-icons rounded text-verde-primaria">electric_bolt</span>
-                                    <p class="ms-2">Gasto Total</p>
+                                    <p class="ms-2">Gasto</p>
                                 </div>
-                                <p class="me-2 text-end text-body-secondary"> KWh</p>
+                                <p class="me-2 text-end text-body-secondary">40000 KWh</p>
                             </div>
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex ">
@@ -61,7 +61,7 @@
                                 <a href="/redes-eletricas/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-visualizar-outline d-block" title="Visualizar Redes Elétricas">
                                     <span class="material-icons rounded">schema</span>
                                 </a>
-                                <a href="" class="text-decoration-none btn-card bg-alterar-outline d-block">
+                                <a href="/ambiente/editar/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-alterar-outline d-block">
                                     <span class="material-icons rounded">edit</span>
                                 </a>
                                 <a href="/ambiente/excluir/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-perigo-outline d-block">

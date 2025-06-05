@@ -141,4 +141,91 @@ class AmbienteController extends BaseController
 
         return redirect()->to('/ambientes')->with('success', 'Ambiente excluído com sucesso!');
     }
+
+    public function editar($idAmbiente)
+{
+    $sessao = session();
+    $usuarioId = $sessao->get('usuarioId');
+
+    if (!$usuarioId) {
+        return redirect()->to('/login')->with('error', 'Acesso negado.');
+    }
+
+    // Buscar o ambiente pelo ID e verificar se pertence ao usuário
+    $ambienteModel = new \App\Models\AmbienteModel();
+    $ambiente = $ambienteModel->where([
+        'ID' => $idAmbiente,
+        'ID_USUARIO' => $usuarioId
+    ])->first();
+
+    if (!$ambiente) {
+        return redirect()->to('/ambientes')->with('error', 'Ambiente não encontrado.');
+    }
+
+    // Carregar os dados do endereço a partir da VIEW usando o ID_ENDERECO do ambiente
+    $viewEnderecoModel = new \App\Models\ViewEnderecoModel(); // Essa model representa a VIEW
+    $endereco = $viewEnderecoModel->where('ID_ENDERECO', $ambiente['ID_ENDERECO'])->first();
+
+    if (!$endereco) {
+        return redirect()->to('/ambientes')->with('error', 'Endereço do ambiente não encontrado.');
+    }
+
+    // Carregar os estados disponíveis (para o select de estados)
+    $estadoModel = new \App\Models\EstadoModel();
+    $estados = $estadoModel->findAll();
+
+    // Enviar tudo para a view de edição
+    return view('pages/editar_ambiente', [
+        'ambiente' => $ambiente,
+        'endereco' => $endereco,
+        'estados' => $estados,
+        'tituloExibicao' => 'Editar Ambiente'
+    ]);
+}
+
+
+    public function atualizar($idAmbiente)
+    {
+        $sessao = session();
+        $usuarioId = $sessao->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'É necessário estar logado.');
+        }
+
+        $ambienteModel = new \App\Models\AmbienteModel();
+        $enderecoModel = new \App\Models\EnderecoModel();
+
+        $descricao = $this->request->getPost('descricao');
+        $tipo = $this->request->getPost('tipo');
+        $vlContaLuz = $this->request->getPost('vl_conta_luz');
+        $percentual = $this->request->getPost('percentual_sustentabilidade');
+
+        $rua = $this->request->getPost('rua');
+        $numero = $this->request->getPost('numero');
+        $bairroId = $this->request->getPost('bairro');
+
+        $ambiente = $ambienteModel->where('ID', $idAmbiente)->where('ID_USUARIO', $usuarioId)->first();
+
+        if (!$ambiente) {
+            return redirect()->to('/ambientes')->with('error', 'Ambiente inválido.');
+        }
+
+        $enderecoId = $ambiente['ID_ENDERECO'];
+
+        $enderecoModel->update($enderecoId, [
+            'RUA' => $rua,
+            'NUMERO' => $numero,
+            'ID_BAIRRO' => $bairroId
+        ]);
+
+        $ambienteModel->update($idAmbiente, [
+            'DESCRICAO' => $descricao,
+            'TIPO' => $tipo,
+            'VL_MEDIO_CONTA_LUZ' => $vlContaLuz,
+            'PERCENTUAL_SUSTENTABILIDADE' => $percentual
+        ]);
+
+        return redirect()->to('/ambientes')->with('success', 'Ambiente atualizado com sucesso!');
+    }
 }
