@@ -7,46 +7,42 @@
 
   <div class="cadastro-ambiente bg-light rounded-5 position-absolute top-50 start-50 translate-middle">
     <a href="<?= site_url('ambientes') ?>" class="retornar">← Retornar</a>
-    <form action="<?= site_url('ambiente/salvar') ?>" method="post" enctype="multipart/form-data">
+    <form action="<?= site_url('ambiente/editar/salvar/') . $ambiente['ID'] ?>" method="post" enctype="multipart/form-data">
       <div class="d-flex flex-wrap justify-content-between">
         <?= csrf_field() ?>
         <div class="formulario col col-12 col-md-6 my-3">
-          <h1>Cadastro de Ambiente</h1>
+          <h1>Editar Ambiente</h1>
           <div class="my-4">
             <div class="linha">
-              <input type="text" name="nome" placeholder="Nome do ambiente" required>
-              <input type="number" name="valorMedioContaLuz" placeholder="Vl. Médio Conta de Luz" required>
+              <input type="text" value="<?= esc($ambiente['DESCRICAO']) ?>" name="nome" placeholder="Nome do ambiente" required>
+              <input type="number" value="<?= esc($ambiente['VL_MEDIO_CONTA_LUZ']) ?>" name="valorMedioContaLuz" placeholder="Vl. Médio Conta de Luz" required>
             </div>
 
             <div class="linha">
-              <input type="text" name="cidade" placeholder="Cidade" required>
+              <input type="text" value="<?= esc($cidadeAmbiente['NOME']) ?>" name="cidade" placeholder="Cidade" required>
               <select name="estado">
-                <option value="">Estado</option>
+                <option value="<?= esc($estadoAmbiente['ID']) ?>"><?= esc($estadoAmbiente['SIGLA']) ?></option>
                 <?php foreach ($estados as $estado): ?>
                   <option value="<?= esc($estado['ID']) ?>"><?= esc($estado['SIGLA']) ?></option>
                 <?php endforeach; ?>
               </select>
-              <input type="text" name="bairro" placeholder="Bairro" required>
+              <input type="text" value="<?= esc($bairroAmbiente['NOME']) ?>" name="bairro" placeholder="Bairro" required>
             </div>
-            
+
             <div class="linha">
-              <input type="number" name="numero" placeholder="Número" required>
-              <input type="text" name="rua" placeholder="Rua" required>
+              <input type="text" value="<?= esc($enderecoAmbiente['RUA']) ?>" name="rua" placeholder="Rua" required>
+              <input type="number" value="<?= esc($enderecoAmbiente['NUMERO']) ?>" name="numero" placeholder="Número" required>
             </div>
 
             <div class="radio-group">
               <label>
-                <input type="radio" name="tipo" value="pessoal" id="tipoPessoal" required>
+                <input type="radio" name="tipo" value="PE" id="tipoPessoal" <?= esc(($ambiente['TIPO']) == 'PE') ? 'checked' : '' ?> required>
                 Pessoal
               </label>
               <label>
-                <input type="radio" name="tipo" value="profissional" id="tipoProfissional" required>
+                <input type="radio" name="tipo" value="PR" id="tipoProfissional" <?= esc(($ambiente['TIPO']) == 'PR') ? 'checked' : '' ?> required>
                 Profissional
               </label>
-            </div>
-
-            <div class="aviso d-none" id="aviso-pessoal">
-              <p class="texto">Ambientes do tipo <strong>Pessoal</strong> só podem ter uma rede elétrica.</p>
             </div>
           </div>
         </div>

@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 use App\Models\AmbienteModel;
+use App\Models\BairroModel;
+use App\Models\CidadeModel;
+use App\Models\EnderecoModel;
 use App\Models\EstadoModel;
 
 class AmbienteController extends BaseController
@@ -19,6 +22,107 @@ class AmbienteController extends BaseController
         ];
 
         return view('pages/cadastrar_ambiente', $dados);
+    }
+
+    public function editar($idAmbiente){
+        $estadoModel = new EstadoModel();
+        $estados = $estadoModel->getEstados();
+
+        $ambienteModel = new AmbienteModel();
+        $bairroModel = new BairroModel();
+        $enderecoModel = new EnderecoModel();
+        $cidadeModel = new CidadeModel();
+
+        $ambiente = $ambienteModel->getAmbientePorID($idAmbiente);
+        $enderecoAmbiente = $enderecoModel->getEnderecoPorID($ambiente['ID_ENDERECO']);
+        $bairroAmbiente = $bairroModel->getBairroPorID($enderecoAmbiente['ID_BAIRRO']);
+        $cidadeAmbiente = $cidadeModel->getCidadePorID($bairroAmbiente['ID_CIDADE']);
+        $estadoAmbiente = $estadoModel->getEstadoPorID($cidadeAmbiente['ID_ESTADO']);
+
+        $dados = [
+            'ambiente' => $ambiente,
+            'enderecoAmbiente' => $enderecoAmbiente,
+            'bairroAmbiente' => $bairroAmbiente,
+            'cidadeAmbiente' => $cidadeAmbiente,
+            'estadoAmbiente' => $estadoAmbiente,
+            'estados' => $estados,
+            'nomeAmbiente' => '',
+            'nomeRedeEletrica' => '',
+            'tituloExibicao' => ''
+        ];
+
+        return view('pages/editar_ambiente', $dados);
+    }
+
+    public function atualizar($idAmbiente)
+    {
+        $session = session();
+        $usuarioId = $session->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'É necessário estar logado.');
+        }
+
+        // Receber dados do formulário
+        $estadoId = $this->request->getPost('estado');
+        $cidadeNome = $this->request->getPost('cidade');
+        $bairroNome = $this->request->getPost('bairro');
+        $rua = $this->request->getPost('rua');
+        $numero = $this->request->getPost('numero');
+        $descricao = $this->request->getPost('nome');
+        $tipo = $this->request->getPost('tipo');
+        $valorContaLuz = $this->request->getPost('valorMedioContaLuz');
+
+        // FOTO
+        $foto = $this->request->getFile('foto');
+        $nomeFoto = null;
+        if ($foto && $foto->isValid()) {
+            $nomeFoto = $foto->getRandomName();
+            $foto->move(WRITEPATH . 'uploads', $nomeFoto);
+        }
+
+        // MODELS
+        $cidadeModel = new CidadeModel();
+        $bairroModel = new BairroModel();
+        $enderecoModel = new EnderecoModel();
+        $ambienteModel = new AmbienteModel();
+
+        $ambiente = $ambienteModel->getAmbientePorID($idAmbiente);
+
+        $cidade = $cidadeModel->where(['NOME' => $cidadeNome, 'ID_ESTADO' => $estadoId])->first();
+        if (!$cidade) {
+            $cidadeId = $cidadeModel->insert(['NOME' => $cidadeNome, 'ID_ESTADO' => $estadoId]);
+        } else {
+            $cidadeId = $cidade['ID'];
+        }
+
+        // // BAIRRO
+        $bairro = $bairroModel->where(['NOME' => $bairroNome, 'ID_CIDADE' => $cidadeId])->first();
+        if (!$bairro) {
+            $bairroId = $bairroModel->insert(['NOME' => $bairroNome, 'ID_CIDADE' => $cidadeId]);
+        } else {
+            $bairroId = $bairro['ID'];
+        }
+
+        // ENDEREÇO
+        $enderecoId = $enderecoModel->update($ambiente['ID_ENDERECO'], [
+            'RUA' => $rua,
+            'NUMERO' => $numero,
+            'ID_BAIRRO' => $bairroId
+        ]);
+
+        // AMBIENTE
+        $ambienteModel->update($idAmbiente, [
+            'DESCRICAO' => $descricao,
+            'TIPO' => strtoupper($tipo[0]) . strtoupper($tipo[1]),
+            'VL_MEDIO_CONTA_LUZ' => $valorContaLuz,
+            'PERCENTUAL_SUSTENTABILIDADE' => 0,
+            'ID_USUARIO' => $usuarioId,
+            'ID_ENDERECO' => $enderecoId,
+            //'FOTO' => $nomeFoto
+        ]);
+
+        return redirect()->to('/ambientes')->with('success', 'Ambiente cadastrado com sucesso!');
     }
 
     public function cadastrar()

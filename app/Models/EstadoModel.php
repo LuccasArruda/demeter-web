@@ -10,5 +10,12 @@
         public function getEstados(){
             return $this->findAll();
         }
+
+        public function getEstadoPorID($idEstado)
+        {
+            return $this->select('ESTADO.*')
+                ->where('ID', $idEstado)
+                ->first();
+        }
     }
 ?>

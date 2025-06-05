@@ -17,6 +17,8 @@ $routes->get('/cadastrar-ambiente', 'AmbienteController::paginaCadastro');
 $routes->get('/ambientes', 'AmbienteController::meusAmbientes');
 $routes->get('/ambiente/excluir/(:num)', 'AmbienteController::excluir/$1');
 $routes->post('/ambiente/salvar', 'AmbienteController::cadastrar');
+$routes->post('/ambiente/editar/salvar/(:num)', 'AmbienteController::atualizar/$1');
+$routes->get('/ambiente/editar/(:num)', 'AmbienteController::editar/$1');
 
 $routes->get('/cadastrar-rede-eletrica', 'RedeEletricaController::paginaCadastro');
 $routes->get('/redes-eletricas/(:num)', 'RedeEletricaController::visualizar/$1');

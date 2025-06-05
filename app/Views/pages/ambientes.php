@@ -61,7 +61,7 @@
                                 <a href="/redes-eletricas/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-visualizar-outline d-block" title="Visualizar Redes Elétricas">
                                     <span class="material-icons rounded">schema</span>
                                 </a>
-                                <a href="" class="text-decoration-none btn-card bg-alterar-outline d-block">
+                                <a href="/ambiente/editar/<?= esc($ambiente['ID'])?>" class="text-decoration-none btn-card bg-alterar-outline d-block">
                                     <span class="material-icons rounded">edit</span>
                                 </a>
                                 <a href="/ambiente/excluir/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-perigo-outline d-block">
