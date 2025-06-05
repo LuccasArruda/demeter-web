@@ -4,6 +4,7 @@ namespace App\Libraries;
 
 use App\Models\AparelhoModel;
 use App\Models\GeradorModel;
+use App\Models\RedeEletricaModel;
 
 class SustentabilidadeService
 {
@@ -67,7 +68,7 @@ class SustentabilidadeService
 
     public function calcularPorAmbiente(int $ambienteId): float
     {
-        $redeModel = new \App\Models\RedeEletricaModel();
+        $redeModel = new RedeEletricaModel();
         $redes = $redeModel->where('ID_AMBIENTE', $ambienteId)->findAll();
         $idsRedes = array_column($redes, 'ID');
 

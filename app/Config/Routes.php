@@ -21,10 +21,8 @@ $routes->post('/ambiente/salvar', 'AmbienteController::cadastrar');
 $routes->get('/cadastrar-rede-eletrica', 'RedeEletricaController::paginaCadastro');
 $routes->get('/redes-eletricas/(:num)', 'RedeEletricaController::visualizar/$1');
 $routes->post('/rede-eletrica/salvar', 'RedeEletricaController::cadastrar');
-
 $routes->get('/rede-eletrica/editar/(:num)', 'RedeEletricaController::editar/$1');
 $routes->post('/rede-eletrica/editar/salvar/(:num)', 'RedeEletricaController::atualizar/$1');
-
 $routes->get('/rede-eletrica/excluir/(:num)', 'RedeEletricaController::excluir/$1');
 
 $routes->get('/cadastrar-aparelho', 'AparelhoController::paginaCadastroAparelho');
@@ -36,6 +34,8 @@ $routes->get('/aparelho/excluir/(:num)', 'AparelhoController::excluir/$1');
 
 $routes->get('/cadastrar-gerador', 'GeradorController::paginaCadastroGerador');
 $routes->post('/gerador/salvar', 'GeradorController::cadastrarGerador');
+$routes->get('/gerador/editar/(:num)', 'GeradorController::editar/$1');
+$routes->post('/gerador/editar/salvar/(:num)', 'GeradorController::atualizar/$1');
 
 $routes->get('/teste-conexao', 'Teste::testarConexao');
 
