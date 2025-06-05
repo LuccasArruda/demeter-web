@@ -31,4 +31,11 @@ class RedeEletricaModel extends Model
             ->findAll();
     }
 
+    public function getRedeEletricaPorID($idRedeEletrica)
+    {
+        return $this->select('REDE_ELETRICA.*')
+            ->where('ID', $idRedeEletrica)
+            ->first();
+    }
+
 }

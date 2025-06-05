@@ -68,8 +68,8 @@ class AparelhoController extends BaseController
         ]);
 
         // Atualiza a pontuação da rede e do ambiente
-        $redeModel = new \App\Models\RedeEletricaModel();
-        $ambienteModel = new \App\Models\AmbienteModel();
+        $redeModel = new RedeEletricaModel();
+        $ambienteModel = new AmbienteModel();
         $service = new SustentabilidadeService();
 
         $rede = $redeModel->find($redeEletricaId);
@@ -123,6 +123,92 @@ class AparelhoController extends BaseController
     
 
         return view('/pages/aparelhos', $dados);
+    }
+
+    public function atualizar($idAparelho){
+        $session = session();
+        $usuarioId = $session->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'É necessário estar logado.');
+        }
+
+        $nome = $this->request->getPost('nome');
+        $consumo = $this->request->getPost('consumo');
+        $tempoUso = $this->request->getPost('tempoUsoMedio');
+        $ence = $this->request->getPost('ENCE');
+        $redeEletricaId = $this->request->getPost('redeEletrica');
+
+        $foto = $this->request->getFile('foto');
+        $nomeFoto = null;
+
+        if ($foto && $foto->isValid()) {
+            $nomeFoto = $foto->getRandomName();
+            $foto->move(WRITEPATH . 'uploads', $nomeFoto);
+        }
+
+        $aparelhoModel = new AparelhoModel();
+        $aparelhoModel->update($idAparelho, [
+            'DESCRICAO' => $nome,
+            'CONSUMO' => $consumo,
+            'TEMPO_DE_USO' => $tempoUso,
+            'ENCE' => $ence,
+            'ID_REDE_ELETRICA' => $redeEletricaId,
+
+        ]);
+
+        // Atualiza a pontuação da rede e do ambiente
+        $redeModel = new RedeEletricaModel();
+        $ambienteModel = new AmbienteModel();
+        $service = new SustentabilidadeService();
+
+        $rede = $redeModel->find($redeEletricaId);
+
+        if ($rede) {
+            // Atualiza rede
+            $pontuacaoRede = round($service->calcularPorRede($redeEletricaId));
+            $redeModel->update($redeEletricaId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoRede]);
+
+            // Atualiza ambiente
+            if (isset($rede['ID_AMBIENTE'])) {
+                $pontuacaoAmbiente = round($service->calcularPorAmbiente($rede['ID_AMBIENTE']));
+                $ambienteModel->update($rede['ID_AMBIENTE'], ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
+            }
+        }
+
+        return redirect()->to("/aparelhos/$redeEletricaId")->with('success', 'Aparelho cadastrado com sucesso!');
+    }
+
+    public function editar($idAparelho)
+    {
+        $sessao = session();
+        $usuarioId = $sessao->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'Acesso negado.');
+        }
+
+        $aparelhoModel = new AparelhoModel();
+        $aparelho = $aparelhoModel->find($idAparelho);
+        
+        $redeEletricaModel = new RedeEletricaModel();
+        $redesEletricas = $redeEletricaModel->findAll();
+        $redeEletricaAparelho = $redeEletricaModel->getRedeEletricaPorID($aparelho['ID_REDE_ELETRICA']);
+
+        if (!$aparelho) {
+            return redirect()->to('/ambientes')->with('error', 'Aparelho não encontrado.');
+        }
+
+        $dados =  [
+            'redesEletricas' => $redesEletricas,
+            'redeEletricaAparelho' => $redeEletricaAparelho,
+            'aparelho' => $aparelho,
+            'nomeAmbiente' => '',
+            'nomeRedeEletrica' => '',
+            'tituloExibicao' => ''
+        ];
+
+        return view("/pages/editar_aparelho", $dados);
     }
     
     public function excluir($id)

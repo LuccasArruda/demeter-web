@@ -48,7 +48,7 @@
                                 <p class="me-2 text-end text-body-secondary"><?= esc($aparelho['ENCE']) ?></p>
                             </div>
                             <div class="d-flex justify-content-center w-100 py-2">
-                                <a href="" class="text-decoration-none btn-card bg-alterar-outline d-block">
+                                <a href="/aparelho/editar/<?= esc($aparelho['ID'])?>" class="text-decoration-none btn-card bg-alterar-outline d-block">
                                     <span class="material-icons rounded">edit</span>
                                 </a>
                                 <a href="/aparelho/excluir/<?= esc($aparelho['ID']) ?>" class="text-decoration-none btn-card bg-perigo-outline d-block">

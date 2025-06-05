@@ -32,9 +32,9 @@
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex">
                                     <span class="material-icons rounded text-verde-primaria">electric_bolt</span>
-                                    <p class="ms-2">Gasto</p>
+                                    <p class="ms-2">Gasto Total</p>
                                 </div>
-                                <p class="me-2 text-end text-body-secondary">40000 KWh</p>
+                                <p class="me-2 text-end text-body-secondary"> KWh</p>
                             </div>
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex ">
