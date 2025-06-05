@@ -69,17 +69,17 @@ class GeradorController extends BaseController
 
         $rede = $redeModel->find($redeEletricaId);
 
-        // if ($rede) {
-        //     // Atualiza rede
-        //     $pontuacaoRede = round($service->calcularPorRede($redeEletricaId));
-        //     $redeModel->update($redeEletricaId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoRede]);
+        if ($rede) {
+            // Atualiza rede
+            $pontuacaoRede = round($service->calcularPorRede($redeEletricaId));
+            $redeModel->update($redeEletricaId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoRede]);
 
-        //     // Atualiza ambiente
-        //     if (isset($rede['ID_AMBIENTE'])) {
-        //         $pontuacaoAmbiente = round($service->calcularPorAmbiente($rede['ID_AMBIENTE']));
-        //         $ambienteModel->update($rede['ID_AMBIENTE'], ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
-        //     }
-        // }
+            // Atualiza ambiente
+            if (isset($rede['ID_AMBIENTE'])) {
+                $pontuacaoAmbiente = round($service->calcularPorAmbiente($rede['ID_AMBIENTE']));
+                $ambienteModel->update($rede['ID_AMBIENTE'], ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
+            }
+        }
         
         return redirect()->to("/aparelhos/$redeEletricaId")->with('success', 'Gerador cadastrado com sucesso!');
     }
@@ -153,17 +153,17 @@ class GeradorController extends BaseController
 
         $rede = $redeModel->find($redeEletricaId);
 
-        // if ($rede) {
-        //     // Atualiza rede
-        //     $pontuacaoRede = round($service->calcularPorRede($redeEletricaId));
-        //     $redeModel->update($redeEletricaId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoRede]);
+        if ($rede) {
+            // Atualiza rede
+            $pontuacaoRede = round($service->calcularPorRede($redeEletricaId));
+            $redeModel->update($redeEletricaId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoRede]);
 
-        //     // Atualiza ambiente
-        //     if (isset($rede['ID_AMBIENTE'])) {
-        //         $pontuacaoAmbiente = round($service->calcularPorAmbiente($rede['ID_AMBIENTE']));
-        //         $ambienteModel->update($rede['ID_AMBIENTE'], ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
-        //     }
-        // }
+            // Atualiza ambiente
+            if (isset($rede['ID_AMBIENTE'])) {
+                $pontuacaoAmbiente = round($service->calcularPorAmbiente($rede['ID_AMBIENTE']));
+                $ambienteModel->update($rede['ID_AMBIENTE'], ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
+            }
+        }
 
         return redirect()->to("/aparelhos/$redeEletricaId")->with('success', 'Gerador atualizado com sucesso!');
     }
