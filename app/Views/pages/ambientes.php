@@ -13,7 +13,7 @@
                         <div class="position-absolute top-0 w-100 container-informacoes-ambiente">
                             <div class="bg-verde-transparente position-relative top-0 w-100 text-center d-flex text-light align-middle justify-content-center rounded-top-2 pt-3">
                                 <span class="material-icons rounded text-light me-2">solar_power</span>
-                                <p class="d-block">Um painel solar economizaria 30R$</p>
+                                <p class="d-block">Um painel solar economizaria 40R$</p>
                             </div>
                             <div class="container-tipo-card d-flex align-items-center justify-content-end">
                                 <div class="tipo-card bg-cor-primaria d-flex align-items-center justify-content-center <?php $texto = (esc($ambiente['TIPO']) == "PR") ? "d-none" : "d-block";
@@ -34,21 +34,21 @@
                                     <span class="material-icons rounded text-verde-primaria">electric_bolt</span>
                                     <p class="ms-2">Gasto Total</p>
                                 </div>
-                                <p class="me-2 text-end text-body-secondary"> KWh</p>
+                                <p class="me-2 text-end text-body-secondary"><?= esc($ambiente['GASTO_TOTAL_AMBIENTE']) ?> KWh</p>
                             </div>
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex ">
                                     <span class="material-icons rounded text-verde-primaria">devices</span>
                                     <p class="ms-2">Aparelhos</p>
                                 </div>
-                                <p class="me-2 text-end text-body-secondary">40000 KWh</p>
+                                <p class="me-2 text-end text-body-secondary"><?= esc($ambiente['TOTAL_APARELHOS_AMBIENTE']) ?></p>
                             </div>
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex">
                                     <span class="material-icons rounded text-verde-primaria">savings</span>
                                     <p class="ms-2">Economia</p>
                                 </div>
-                                <p class="me-2 text-end text-body-secondary">40000 KWh</p>
+                                <p class="me-2 text-end text-body-secondary"><?= esc($ambiente['GASTO_ABATIDO_AMBIENTE']) ?> KWh</p>
                             </div>
                             <div class="medidor-sustentabilidade">
                                 <div class="progresso" style="width: <?= esc($ambiente['PERCENTUAL_SUSTENTABILIDADE']) ?>%">
@@ -61,7 +61,7 @@
                                 <a href="/redes-eletricas/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-visualizar-outline d-block" title="Visualizar Redes Elétricas">
                                     <span class="material-icons rounded">schema</span>
                                 </a>
-                                <a href="/ambiente/editar/<?= esc($ambiente['ID'])?>" class="text-decoration-none btn-card bg-alterar-outline d-block">
+                                <a href="/ambiente/editar/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-alterar-outline d-block">
                                     <span class="material-icons rounded">edit</span>
                                 </a>
                                 <a href="/ambiente/excluir/<?= esc($ambiente['ID']) ?>" class="text-decoration-none btn-card bg-perigo-outline d-block">

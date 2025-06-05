@@ -30,13 +30,13 @@
                 </a>
             </li>
             <li class="text-center">
-                <a href="/cadastrar-ambiente" class="text-light text-decoration-none">
-                    <span class="material-icons mb-2 p-1 rounded icone-navbar">add_home_work</span>
+                <a href="/cadastrar-rede-eletrica" class="text-light text-decoration-none">
+                    <span class="material-icons mb-2 p-1 rounded icone-navbar">schema</span>
                 </a>
             </li>
             <li class="text-center">
-                <a href="/cadastrar-rede-eletrica" class="text-light text-decoration-none">
-                    <span class="material-icons mb-2 p-1 rounded icone-navbar">schema</span>
+                <a href="/cadastrar-ambiente" class="text-light text-decoration-none">
+                    <span class="material-icons mb-2 p-1 rounded icone-navbar">add_home_work</span>
                 </a>
             </li>
             <li class="text-center">

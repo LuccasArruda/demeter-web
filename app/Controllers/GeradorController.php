@@ -199,17 +199,17 @@ class GeradorController extends BaseController
             return redirect()->back()->with('error', 'Erro ao excluir o gerador.');
         }
 
-        // if ($rede) {
-        //     // Atualiza rede
-        //     $pontuacaoRede = round($sustentabilidadeService->calcularPorRede($redeId));
-        //     $redeModel->update($redeId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoRede]);
+        if ($rede) {
+            // Atualiza rede
+            $pontuacaoRede = round($sustentabilidadeService->calcularPorRede($redeId));
+            $redeModel->update($redeId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoRede]);
 
-        //     // Atualiza ambiente
-        //     if (isset($rede['ID_AMBIENTE'])) {
-        //         $pontuacaoAmbiente = round($sustentabilidadeService->calcularPorAmbiente($rede['ID_AMBIENTE']));
-        //         $ambienteModel->update($rede['ID_AMBIENTE'], ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
-        //     }
-        // }
+            // Atualiza ambiente
+            if (isset($rede['ID_AMBIENTE'])) {
+                $pontuacaoAmbiente = round($sustentabilidadeService->calcularPorAmbiente($rede['ID_AMBIENTE']));
+                $ambienteModel->update($rede['ID_AMBIENTE'], ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
+            }
+        }
 
         return redirect()->to("/aparelhos/$redeId")->with('success', 'Aparelho excluído com sucesso!');
     }

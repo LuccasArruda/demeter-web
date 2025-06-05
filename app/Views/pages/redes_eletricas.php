@@ -21,21 +21,21 @@
                                     <span class="material-icons mb-3 rounded text-verde-primaria">electric_bolt</span>
                                     <p class="ms-2">Gasto</p>
                                 </div>
-                                <p class="me-2 text-end"> KWh</p>
+                                <p class="me-2 text-end"><?= esc($rede['GASTO_TOTAL']) ?> KWh</p>
                             </div>
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex">
                                     <span class="material-icons mb-3 rounded text-verde-primaria">devices</span>
                                     <p class="ms-2">Aparelhos</p>
                                 </div>
-                                <p class="me-2 text-end">40000 KWh</p>
+                                <p class="me-2 text-end"><?= esc($rede['TOTAL_APARELHOS']) ?></p>
                             </div>
                             <div class="d-flex align-items-center w-100 justify-content-between">
                                 <div class="d-flex">
                                     <span class="material-icons mb-3 rounded text-verde-primaria">savings</span>
                                     <p class="ms-2">Economia</p>
                                 </div>
-                                <p class="me-2 text-end">40000 KWh</p>
+                                <p class="me-2 text-end"><?= esc($rede['GASTO_ABATIDO']) ?> KWh</p>
                             </div>
                             <div class="medidor-sustentabilidade">
                                 <div class="progresso" style="width: <?= esc($rede['PERCENTUAL_SUSTENTABILIDADE']) ?>%">
@@ -48,7 +48,7 @@
                                 <a href="/aparelhos/<?= esc($rede['ID']) ?>" class="text-decoration-none btn-card bg-visualizar-outline d-block" title="Visualizar Aparelhos">
                                     <span class="material-icons rounded">devices</span>
                                 </a>
-                                <a href="/rede-eletrica/editar/<?= esc($rede['ID'])?>" class="text-decoration-none btn-card bg-alterar-outline d-block">
+                                <a href="/rede-eletrica/editar/<?= esc($rede['ID']) ?>" class="text-decoration-none btn-card bg-alterar-outline d-block">
                                     <span class="material-icons rounded">edit</span>
                                 </a>
                                 <a href="/rede-eletrica/excluir/<?= esc($rede['ID']) ?>" class="text-decoration-none btn-card bg-perigo-outline d-block">
