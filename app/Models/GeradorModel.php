@@ -9,7 +9,7 @@ class GeradorModel extends Model
     protected $table = 'GERADOR';
     protected $primaryKey = 'ID';
 
-    protected $allowedFields = ['DESCRICAO', 'POTENCIA', 'TIPO', 'ID_REDE_ELETRICA'];
+    protected $allowedFields = ['DESCRICAO', 'ENERGIA_GERADA', 'TIPO', 'ID_REDE_ELETRICA'];
 
     protected $useTimestamps = false;
 }

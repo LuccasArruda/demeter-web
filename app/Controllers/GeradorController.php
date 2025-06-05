@@ -55,7 +55,7 @@ class GeradorController extends BaseController
         $geradorModel = new GeradorModel();
         $geradorModel->insert([
             'DESCRICAO' => $nome,
-            'POTENCIA' => $energiaGerada,
+            'ENERGIA_GERADA' => $energiaGerada,
             'TIPO' => $tipo,
             'ID_REDE_ELETRICA' => $redeEletricaId,
             //'IMAGEM_CAMINHO' => $nomeFoto ? 'uploads/' . $nomeFoto : null,
