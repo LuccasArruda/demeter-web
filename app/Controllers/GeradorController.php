@@ -167,4 +167,50 @@ class GeradorController extends BaseController
 
         return redirect()->to("/aparelhos/$redeEletricaId")->with('success', 'Gerador atualizado com sucesso!');
     }
+
+    public function excluir($id)
+    {
+        $sessao = session();
+        $usuarioId = $sessao->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'Acesso negado. Faça login para continuar.');
+        }
+
+        $geradorModel = new GeradorModel();
+        $redeModel = new RedeEletricaModel();
+        $ambienteModel = new AmbienteModel();
+        $sustentabilidadeService = new SustentabilidadeService();
+
+        $gerador = $geradorModel->find($id);
+
+        if (!$gerador) {
+            return redirect()->back()->with('error', 'Gerador não encontrado.');
+        }
+
+        $redeId = $gerador['ID_REDE_ELETRICA'];
+        $rede = $redeModel->find($redeId);
+
+        if (!$rede) {
+            return redirect()->back()->with('error', 'Rede elétrica vinculada não encontrada.');
+        }
+
+        if (!$geradorModel->delete($id)) {
+            return redirect()->back()->with('error', 'Erro ao excluir o gerador.');
+        }
+
+        // if ($rede) {
+        //     // Atualiza rede
+        //     $pontuacaoRede = round($sustentabilidadeService->calcularPorRede($redeId));
+        //     $redeModel->update($redeId, ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoRede]);
+
+        //     // Atualiza ambiente
+        //     if (isset($rede['ID_AMBIENTE'])) {
+        //         $pontuacaoAmbiente = round($sustentabilidadeService->calcularPorAmbiente($rede['ID_AMBIENTE']));
+        //         $ambienteModel->update($rede['ID_AMBIENTE'], ['PERCENTUAL_SUSTENTABILIDADE' => $pontuacaoAmbiente]);
+        //     }
+        // }
+
+        return redirect()->to("/aparelhos/$redeId")->with('success', 'Aparelho excluído com sucesso!');
+    }
 }

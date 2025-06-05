@@ -36,6 +36,7 @@ $routes->get('/cadastrar-gerador', 'GeradorController::paginaCadastroGerador');
 $routes->post('/gerador/salvar', 'GeradorController::cadastrarGerador');
 $routes->get('/gerador/editar/(:num)', 'GeradorController::editar/$1');
 $routes->post('/gerador/editar/salvar/(:num)', 'GeradorController::atualizar/$1');
+$routes->get('/gerador/excluir/(:num)', 'GeradorController::excluir/$1');
 
 $routes->get('/teste-conexao', 'Teste::testarConexao');
 
