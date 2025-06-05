@@ -13,7 +13,7 @@
             <?php if (!empty($redes)): ?>
                 <?php foreach ($redes as $rede): ?>
                     <div class="card my-3 bg-card m-2 card-exibicao p-0">
-                        <img src="<?= base_url("assets/img/teste/ambiente1.png") ?>" class="card-img-top" alt="...">
+                        <img src="<?= base_url("assets/img/teste/rede-eletrica.jpg") ?>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="text-verde-primaria text-center"><?= esc($rede['DESCRICAO']) ?></h5>
                             <div class="d-flex align-items-center w-100 justify-content-between">

@@ -26,7 +26,13 @@
                                 </div>
                             </div>
                         </div>
-                        <img src="<?= base_url("assets/img/teste/ambiente1.png") ?>" class="card-img-top w-100" alt="...">
+                        <?php
+                        if (esc($aparelho['TIPO']) == "A") {
+                            echo '<img src="' . base_url("assets/img/teste/aparelho.png") . '" class="card-img-top" alt="...">';
+                        } else {
+                            echo '<img src="' . base_url("assets/img/teste/gerador.jpg") . '" class="card-img-top" alt="...">';
+                        }
+                        ?>
                         <div class="card-body d-flex flex-column justify-content-between">
                             <h5 class="text-verde-primaria text-center titulo-card"><?= esc(($aparelho['TIPO']) == 'A') ? esc($aparelho['DESCRICAO_APARELHO']) : esc($aparelho['DESCRICAO_GERADOR']) ?></h5>
                             <div class="d-flex align-items-center w-100 justify-content-between">

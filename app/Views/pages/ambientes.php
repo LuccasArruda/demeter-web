@@ -26,7 +26,13 @@
                                 </div>
                             </div>
                         </div>
-                        <img src="<?= base_url("assets/img/teste/ambiente1.png") ?>" class="card-img-top" alt="...">
+                        <?php
+                        if (esc($ambiente['TIPO']) == "PE") {
+                            echo '<img src="' . base_url("assets/img/teste/ambiente-pessoal.png") . '" class="card-img-top" alt="...">';
+                        } else {
+                            echo '<img src="' . base_url("assets/img/teste/ambiente-profissional.jpg") . '" class="card-img-top" alt="...">';
+                        }
+                        ?>
                         <div class="card-body d-flex flex-column justify-content-between">
                             <h5 class="text-verde-primaria text-center titulo-card"><?= esc($ambiente['DESCRICAO']) ?></h5>
                             <div class="d-flex align-items-center w-100 justify-content-between">
