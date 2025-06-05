@@ -58,9 +58,19 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-            <?php elseif (!isset($mensagem_status)): // Se $ambientes estiver vazio e não houver mensagem_status 
+            <?php else: // Se $ambientes estiver vazio e não houver mensagem_status 
             ?>
-                <p>Nenhuma Rede encontrada para esse ambeinte.</p>
+                <div class="placeholder-sem-itens d-flex flex-column">
+                    <img src="<?= base_url("assets/img/ilustracao-rede-eletrica.svg") ?>" alt="object-fit-cover" class="">
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <h1 class="text-verde-primaria text-center">Nenhuma rede elétrica foi cadastrada!</h1>
+                    <p>Parece que você ainda não cadastrou nenhuma rede elétrica!</p>
+                    <a href="/cadastrar-rede-eletrica" class="btn-card bg-visualizar-outline text-decoration-none d-flex">
+                        <span class="material-icons rounded pe-2">schema</span>
+                        <p>Cadastrar Rede Elétrica</p>
+                    </a>
+                </div>
             <?php endif; ?>
 
         </div>

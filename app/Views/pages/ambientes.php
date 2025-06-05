@@ -71,11 +71,20 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-            <?php elseif (!isset($mensagem_status)): // Se $ambientes estiver vazio e não houver mensagem_status 
+            <?php else: // Se $ambientes estiver vazio e não houver mensagem_status 
             ?>
-                <p>Nenhum ambiente encontrado para este usuário.</p>
+                <div class="placeholder-sem-itens d-flex flex-column">
+                    <img src="<?= base_url("assets/img/ilustracao-ambiente.svg") ?>" alt="object-fit-cover" class="">
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <h1 class="text-verde-primaria text-center">Nenhum ambiente foi cadastrado!</h1>
+                    <p>Parece que você ainda não cadastrou nenhum ambiente!</p>
+                    <a href="/cadastrar-ambiente" class="btn-card bg-visualizar-outline text-decoration-none d-flex">
+                        <span class="material-icons rounded pe-2">add_home_work</span>
+                        <p>Cadastrar Ambiente</p>
+                    </a>
+                </div>
             <?php endif; ?>
-
         </div>
     </main>
 

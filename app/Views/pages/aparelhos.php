@@ -64,9 +64,19 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-            <?php elseif (!isset($mensagem_status)):
+            <?php else:
             ?>
-                <p>Nenhum aparelho encontrado para esta rede elétrica.</p>
+                <div class="placeholder-sem-itens d-flex flex-column">
+                    <img src="<?= base_url("assets/img/ilustracao-aparelhos.svg") ?>" alt="object-fit-cover" class="">
+                </div>
+                <div class="d-flex flex-column align-items-center">
+                    <h1 class="text-verde-primaria text-center">Nenhum aparelho foi cadastrado!</h1>
+                    <p>Parece que você ainda não cadastrou nenhum aparelho!</p>
+                    <a href="/cadastrar-aparelho" class="btn-card bg-visualizar-outline text-decoration-none d-flex">
+                        <span class="material-icons rounded pe-2">devices</span>
+                        <p>Cadastrar Aparelho</p>
+                    </a>
+                </div>
             <?php endif; ?>
 
         </div>
