@@ -6,13 +6,14 @@ use CodeIgniter\Model;
 
 class AparelhoModel extends Model
 {
+    
     protected $table         = 'APARELHO';
     protected $primaryKey    = 'ID';
 
     protected $allowedFields = ['ID_REDE_ELETRICA', 'DESCRICAO', 'FABRICANTE', 'CONSUMO', 'FOTO', 'ENCE', 'TEMPO_DE_USO'];
 
     protected $useTimestamps = false;
-
+    
     public function getAparelhosPorRedeEUsuario($idRede, $usuarioId)
     {
         return $this->select('APARELHO.*')

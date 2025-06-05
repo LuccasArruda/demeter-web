@@ -6,6 +6,8 @@ use App\Models\RedeEletricaModel;
 use App\Models\AparelhoModel;
 use App\Models\AmbienteModel;
 use App\Libraries\SustentabilidadeService;
+use App\Models\ViewAparelhoModel;
+use App\Models\ViewAparelhoRedeEletricaModel;
 
 class AparelhoController extends BaseController
 {
@@ -111,8 +113,8 @@ class AparelhoController extends BaseController
         $nomeAmbiente = isset($ambiente) ? $ambiente['DESCRICAO'] . ' |' : '';
         $nomeRedeEletrica = $rede['DESCRICAO'] . ' |';
 
-        $aparelhoModel = new AparelhoModel();
-        $aparelhos = $aparelhoModel->getAparelhosPorRedeEUsuario($idRede, $usuarioId);
+        $viewAparelhoModel = new ViewAparelhoRedeEletricaModel();
+        $aparelhos = $viewAparelhoModel->getAparelhosPorRede($idRede);
 
         $dados =  [
             'aparelhos' => $aparelhos,
