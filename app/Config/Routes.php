@@ -21,6 +21,10 @@ $routes->post('/ambiente/salvar', 'AmbienteController::cadastrar');
 $routes->get('/cadastrar-rede-eletrica', 'RedeEletricaController::paginaCadastro');
 $routes->get('/redes-eletricas/(:num)', 'RedeEletricaController::visualizar/$1');
 $routes->post('/rede-eletrica/salvar', 'RedeEletricaController::cadastrar');
+
+$routes->get('/rede-eletrica/editar/(:num)', 'RedeEletricaController::editar/$1');
+$routes->post('/rede-eletrica/editar/salvar/(:num)', 'RedeEletricaController::atualizar/$1');
+
 $routes->get('/rede-eletrica/excluir/(:num)', 'RedeEletricaController::excluir/$1');
 
 $routes->get('/cadastrar-aparelho', 'AparelhoController::paginaCadastroAparelho');

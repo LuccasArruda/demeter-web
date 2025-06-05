@@ -101,6 +101,74 @@ class RedeEletricaController extends BaseController
         return view('/pages/redes_eletricas', $dados);
     }
 
+    public function editar($idRedeEletrica)
+    {
+        $sessao = session();
+        $usuarioId = $sessao->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'Acesso negado. Faça login para continuar.');
+        }
+        
+        $redeEletricaModel = new RedeEletricaModel();
+        $redeEletrica = $redeEletricaModel->getRedeEletricaPorID($idRedeEletrica);
+
+        $ambienteModel = new AmbienteModel();
+        $ambientes = $ambienteModel->getAmbientesPorUsuario($usuarioId);
+        $ambienteRedeEletrica = $ambienteModel->getAmbientePorID($redeEletrica['ID_AMBIENTE']);
+
+        $dados = [
+            'ambientes' => $ambientes,
+            'redeEletrica' => $redeEletrica,
+            'ambienteRedeEletrica' => $ambienteRedeEletrica,
+            'nomeAmbiente' => '',
+            'nomeRedeEletrica' => '',
+            'tituloExibicao' => ''
+        ];
+
+        return view('/pages/editar_rede_eletrica', $dados);
+    }
+
+    public function atualizar($idRedeEletrica)
+    {
+        $session = session();
+        $usuarioId = $session->get('usuarioId');
+
+        if (!$usuarioId) {
+            return redirect()->to('/login')->with('error', 'É necessário estar logado.');
+        }
+
+        // Dados do formulário
+        $descricao = $this->request->getPost('descricao');
+        $idAmbiente = $this->request->getPost('ambiente');
+
+        // Upload da foto
+        $foto = $this->request->getFile('foto');
+        $nomeFoto = null;
+
+        if ($foto && $foto->isValid()) {
+            $nomeFoto = $foto->getRandomName();
+            $foto->move(WRITEPATH . 'uploads', $nomeFoto);
+        }
+
+        // Verificar se o ambiente pertence ao usuário
+        $ambienteModel = new AmbienteModel();
+        $ambiente = $ambienteModel->where(['ID' => $idAmbiente, 'ID_USUARIO' => $usuarioId])->first();
+
+        if (!$ambiente) {
+            return redirect()->to('/cadastrar-rede-eletrica')->with('error', 'Ambiente inválido.');
+        }
+
+        // Inserir dados
+        $redeModel = new RedeEletricaModel();
+        $redeModel->update($idRedeEletrica, [
+            'DESCRICAO' => $descricao,
+            'ID_AMBIENTE' => $idAmbiente,
+        ]);
+
+        return redirect()->to("/redes-eletricas/$idAmbiente")->with('success', 'Rede elétrica atualizada com sucesso!');
+    }
+
     public function excluir($id)
     {
         $sessao = session();

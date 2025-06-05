@@ -48,7 +48,7 @@
                                 <a href="/aparelhos/<?= esc($rede['ID']) ?>" class="text-decoration-none btn-card bg-visualizar-outline d-block" title="Visualizar Aparelhos">
                                     <span class="material-icons rounded">devices</span>
                                 </a>
-                                <a href="" class="text-decoration-none btn-card bg-alterar-outline d-block">
+                                <a href="/rede-eletrica/editar/<?= esc($rede['ID'])?>" class="text-decoration-none btn-card bg-alterar-outline d-block">
                                     <span class="material-icons rounded">edit</span>
                                 </a>
                                 <a href="/rede-eletrica/excluir/<?= esc($rede['ID']) ?>" class="text-decoration-none btn-card bg-perigo-outline d-block">

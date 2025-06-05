@@ -50,6 +50,8 @@ class AmbienteModel extends Model
 
     public function getAmbientePorID($id)
     {
-        return $this->where('ID', $id)->first();
+        return $this->select('AMBIENTE.*')
+            ->where('ID', $id)
+            ->first();
     }
 }
